@@ -10,6 +10,12 @@ var menu = {
         orm.selectCategory("menu", condition, function (res) {
             cb(res);
         });
+    },
+    del: function(condition, cb) {
+        // console.log(conditon);
+        orm.delete("menu", condition, function(res) {
+            cb(res);
+        })
     }
 }
 
