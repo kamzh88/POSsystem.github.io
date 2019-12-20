@@ -1,12 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>POS System</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/a5a0fef831.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container header">
+                            <h1 class="display-4">Next Gen POS</h1>
+                            <p class="lead">
+                                1st Class POS Solutions
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="contentContainer">
+                        <div class="searchContainer">
+                            <h2>
+                                <span>Employee ID</span>
+                            </h2>
+                            <form>
+                                <div class="form-group searchBar">
+                                    <input type="text" class="form-control" id="userInput" name="userInput" placeholder="Enter Employee ID">
+                                    <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="infoContainer">
+                            <div class="imgBox">
+                                <a title="click to enlarge" href="#img">
+                                    <img>
+                                </a>
+                            </div>
+                            <div class="dogInfo">
+                            </div>
+                        </div>
+                        <div id="img" class="preview">
+
+                            <a href="#" class="close">⨯</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footerContainer">
+        <footer>
+            <p>
+                Copyright &copy; 2019 Group Name. All rights reserved.
+            </p>
+        </footer>
+    </div>
 </body>
+
 </html>
