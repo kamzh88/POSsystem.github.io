@@ -16,7 +16,10 @@ router.get("/api/menu", function(req, res) {
 });
 
 router.get("/api/menu/:category", function(req, res) {
-    menu.selectCategory(function (data) {
+    var category = JSON.stringify(req.params.category)
+    var condition = "category = " + category;
+    console.log(condition);
+    menu.selectCategory(condition, function (data) {
         res.json({menu: data});
     });
 });

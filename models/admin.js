@@ -6,11 +6,11 @@ var menu = {
             cb(res);
         });
     },
-    // selectCategory: function(cb) {
-    //     orm.selectCategory("menu", function (res) {
-    //         cb(res);
-    //     });
-    // }
+    selectCategory: function(condition, cb) {
+        orm.selectCategory("menu", condition, function (res) {
+            cb(res);
+        });
+    }
 }
 
 module.exports = menu;
