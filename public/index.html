@@ -5,68 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>POS System</title>
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title></title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/a5a0fef831.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="main">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm">
-                    <div class="jumbotron jumbotron-fluid">
-                        <div class="container header">
-                            <h1 class="display-4">Next Gen POS</h1>
-                            <p class="lead">
-                                1st Class POS Solutions
-                            </p>
-                        </div>
-                    </div>
-                </div>
+    <main class="container">
+        <section class="header">
+            <h2>POS System</h2>
+            <span>1st Class POS Solutions</span>
+        </section>
+        <section class="keypad">
+            <input class="employeeID" type="password">
+            <div class="buttons">
+                <button id="button-1" class="btn btn-primary number" value="1"><span>1</span></button>
+                <button id="button-2" class="btn btn-primary number" value="2"><span>2</span></button>
+                <button id="button-3" class="btn btn-primary number" value="3"><span>3</span></button>
+                <br><br>
+                <button id="button-4" class="btn btn-primary number" value="4"><span>4</span></button>
+                <button id="button-5" class="btn btn-primary number" value="5"><span>5</span></button>
+                <button id="button-6" class="btn btn-primary number" value="6"><span>6</span></button>
+                <br><br>
+                <button id="button-7" class="btn btn-primary number" value="7"><span>7</span></button>
+                <button id="button-8" class="btn btn-primary number" value="8"><span>8</span></button>
+                <button id="button-9" class="btn btn-primary number" value="9"><span>9</span></button>
+                <br><br>
+                <button id="button-clear" class="btn btn-dark clear" value="clear"><span><i class="far fa-arrow-alt-circle-left"></i></span></button>
+                <button id="button-0" class="btn btn-primary number" value="0"><span>0</span></button>
+                <button id="button-submit" class="btn btn-success submit" value="submit"><span>OK</span></button>
             </div>
-            <div class="row">
-                <div class="col-sm">
-                    <div class="contentContainer">
-                        <div class="searchContainer">
-                            <h2>
-                                <span>Employee ID</span>
-                            </h2>
-                            <form>
-                                <div class="form-group searchBar">
-                                    <input type="text" class="form-control" id="userInput" name="userInput" placeholder="Enter Employee ID">
-                                    <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="infoContainer">
-                            <div class="imgBox">
-                                <a title="click to enlarge" href="#img">
-                                    <img>
-                                </a>
-                            </div>
-                            <div class="dogInfo">
-                            </div>
-                        </div>
-                        <div id="img" class="preview">
-
-                            <a href="#" class="close">⨯</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="footerContainer">
-        <footer>
-            <p>
-                Copyright &copy; 2019 Group Name. All rights reserved.
-            </p>
-        </footer>
-    </div>
+        </section>
+    </main>
+    <script type="text/javascript" src="js/index.js"></script>
 </body>
 
 </html>
