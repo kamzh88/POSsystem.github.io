@@ -16,6 +16,37 @@ $(function () {
                 menuElem.append(new_elem);
             };
         });
+
+
+
+        $(document).on("click", "#create-items", function (event) {
+            console.log(data.menu);
+
+            $(".create-form").on("submit", function (event) {
+
+                event.preventDefault();
+
+                var itemName = $("#item-name").val().trim();
+                var categoryName = $("#category-name").val().trim();
+                var itemPrice = $("#item-price").val().trim();
+                
+                var newItem = {
+                    item_name: itemName,
+                    category: categoryName,
+                    selected: 0,
+                    price: itemPrice
+                }
+                // console.log(newItem);
+
+                $.ajax("/")
+                var menuElem = $(".modal-body");
+    
+                var items = data.menu;
+                var len = data.menu.length;
+            })
+
+
+        });
     });
 
     $(document).on("click", ".delete-item", function (event) {
@@ -29,7 +60,6 @@ $(function () {
             location.reload();
         });
     });
-
 
 });
 
