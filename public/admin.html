@@ -1,26 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Project 2 - Menu</title>
-
 	<link rel="stylesheet" href="./assets/css/reset.css">
 	<link rel="stylesheet" href="./assets/css/style.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://code.jquery.com/jquery.js"></script>
 </head>
-
 <body>
-
-	<button id="menu-changes" class="btn" data-toggle='modal' data-target='#exampleModalLong' value="edit"><span>Menu Changes</span></button>
+	<button id="create-items" class="btn" data-toggle='modal' data-target='#exampleModalLong1' value="create"><span>Add
+			items</span></button>
 	<br><br>
-	<button id="create-items" class="btn" data-toggle='modal' data-target='#exampleModalLong' value="create"><span>Add items</span></button>
 
-	<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+	<button id="menu-changes" class="btn" data-toggle='modal' data-target='#exampleModalLong2' value="edit"><span>Menu
+			Changes</span></button>
+	<br><br>
+	<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Create New Items</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form class="create-form">
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="">Item Name</label>
+							<input type="text" class="form-control" id="item-name">
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlSelect1">Category</label>
+							<select class="form-control" id="category-name">
+								<option>Chicken</option>
+								<option>Beef</option>
+								<option>Seafood</option>
+								<option>Vegetables</option>
+								<option>Appetizers</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">Price</label>
+							<input type="text" class="form-control" id="item-price">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary submit">Create</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+		aria-hidden="true">
+
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -39,11 +79,9 @@
 			</div>
 		</div>
 	</div>
-
 	<script src="https://kit.fontawesome.com/a5a0fef831.js" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script src="assets/js/admins.js"></script>
 </body>
-
 </html>
