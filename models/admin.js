@@ -16,6 +16,12 @@ var menu = {
         orm.delete("menu", condition, function(res) {
             cb(res);
         })
+    },
+    insertOne: function(cols, vals, cb) {
+        orm.insertOne("menu", cols, vals, function(res) {
+            cb(res);
+            // console.log(res);
+        })
     }
 }
 

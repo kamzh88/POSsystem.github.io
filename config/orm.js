@@ -60,6 +60,17 @@ var orm = {
             }
             cb(result);
         })
+    },
+    insertOne: function (table, cols, vals, cb) {
+        var queryString = `INSERT INTO ${table} (${cols.toString()}) VALUES (${printQuestionMarks(vals.length)})`;
+        // console.log(queryString);
+        connection.query(queryString, vals, function (err, result) {
+            if (err) {
+                throw err;
+            }
+            cb(result);
+            // console.log(result);
+        });
     }
 }
 

@@ -43,4 +43,15 @@ router.delete("/api/menu/:id", function (req, res) {
     })
 })
 
+router.post("/api/menu", function (req, res) {
+    // console.log(req);
+    menu.insertOne(
+        ["item_name", "category", "selected", "price"],
+        [req.body.item_name, req.body.category, req.body.selected, req.body.price],
+        function (result) {
+            res.json({id: result.insertId });
+        }
+    )
+})
+
 module.exports = router;
