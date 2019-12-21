@@ -18,3 +18,12 @@ CREATE TABLE customers (
     customer_name VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE employees (
+    id INT NOT NULL AUTO_INCREMENT,
+    employee_id INT NOT NULL,
+    employee_firstName VARCHAR(255) NOT NULL,
+    employee_lastName VARCHAR(255) NOT NULL,
+    employee_position VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);

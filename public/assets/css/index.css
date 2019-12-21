@@ -1,23 +1,30 @@
 body {
-	margin: 0 auto;
+	/* margin: 0 auto; */
 	width: 100%;
+	padding: 1rem 6rem;
 }
-.container {
+
+.grid {
 	display: grid;
+	align-items: center;
 	justify-items: center;
-	grid-template-columns: 1fr;
+	grid-gap: 1rem;
+	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: auto;
 	grid-template-areas: 
-		"header"
-		"keypad"
-		"footer";
-	position: relative;
+		"header header"
+		"admin keypad";
 }
 .header {
 	grid-area: header;
 }
+.admin {
+	grid-area: admin;
+	justify-self: end;
+}
 .keypad {
 	grid-area: keypad;
+	justify-self: start;
 }
 
 .header {
