@@ -7,20 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
 
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/a5a0fef831.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
 </head>
 
 <body>
-    <main class="container">
+    <main class="grid">
         <section class="header">
             <h2>POS System</h2>
             <span>1st Class POS Solutions</span>
         </section>
+        <section class="admin">
+            <div class="buttons">
+                <button id="createEmployee" class="btn btn-primary" value="create"><i class="fas fa-plus"></i><span>New Employee</span></button>
+                <button id="editEmployee" class="btn btn-primary" value="edit"><i class="fas fa-edit"></i><span>Edit Employee</span></button>
+            </div>
+        </section>
         <section class="keypad">
-            <input class="employeeID" type="password">
+            <h3 class="employeeID"></h3>
             <div class="buttons">
                 <button id="button-1" class="btn btn-primary number" value="1"><span>1</span></button>
                 <button id="button-2" class="btn btn-primary number" value="2"><span>2</span></button>
@@ -40,7 +47,7 @@
             </div>
         </section>
     </main>
-    <script type="text/javascript" src="js/index.js"></script>
+    <script src="assets/js/index.js"></script>
 </body>
 
 </html>
