@@ -2,6 +2,7 @@ $(function () {
     $.ajax("/api/menu", {
         type: "GET"
     }).then(function (data) {
+        //Edit Menu Button
         $(document).on("click", "#menu-changes", function (event) {
             // console.log(data.menu);
             var menuElem = $(".modal-body");
@@ -11,18 +12,17 @@ $(function () {
                 var new_elem = `
                 <ul> ${items[i].id}. ${items[i].item_name}   $${items[i].price}
                 <button class='delete-item' data-id=${items[i].id}>DELETE</button>
-                <h4 class="panel-title"><a data-toggle="collapse" href="#collapse${i}"data-id=${items[i].id}>Edit</a></h4>
+                <h4 class="panel-title"><a data-toggle="collapse" href="#collapse${i}">Edit</a></h4>
                 <div id="collapse${i}" class="panel-collapse collapse">
                   <div class="panel-body">
-                  <form class="create-form">
-                  <div class="modal-body">
+                  <form class="edit-form">
                       <div class="form-group">
-                          <label for="">Item Name</label>
-                          <input type="text" class="form-control" id="item-name">
+                          <label for="new-name${i}" data-id="${items[i].id}">Item Name</label>
+                          <input type="text" class="item-name" >
                       </div>
                       <div class="form-group">
                           <label for="exampleFormControlSelect1">Category</label>
-                          <select class="form-control" id="category-name">
+                          <select class="form-control" class="new-name${i}">
                               <option>Chicken</option>
                               <option>Beef</option>
                               <option>Seafood</option>
@@ -32,19 +32,31 @@ $(function () {
                       </div>
                       <div class="form-group">
                           <label for="">Price</label>
-                          <input type="text" class="form-control" id="item-price">
+                          <input type="text" class="form-control" class="new-item-price${i}">
                       </div>
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                       <button type="submit" class="btn btn-primary submit">Edit</button>
-                  </div>
               </form>
                   </div>
                 </div></ul>`
-                menuElem.append(new_elem);
+                menuElem.append(new_elem);    
             };
+            $(".edit-form").on("submit", function(event) {
+                var itemName = $(event.target).closest("item-name").context[0].value;
+                var categoryName = $(event.target).closest("item-name").context[1].value;
+                var itemPrice = $(event.target).closest("item-name").context[2].value;
+                var newItem = {
+                    item_name: itemName,
+                    category: categoryName,
+                    selected: 0,
+                    price: itemPrice
+                }
+                console.log(newItem);
+            })
         });
+        //add items button
         $(document).on("click", "#create-items", function (event) {
-            // console.log(data.menu);
+            console.log(data.menu);
             $(".create-form").on("submit", function (event) {
                 event.preventDefault();
                 var itemName = $("#item-name").val().trim();
@@ -55,7 +67,7 @@ $(function () {
                     category: categoryName,
                     selected: 0,
                     price: itemPrice
-                }
+                };
                 // console.log(newItem);
                 $.ajax("/api/menu", {
                     type: "POST",
@@ -64,11 +76,11 @@ $(function () {
                     contentType: "application/json"
                 }).then(function () {
                     location.reload();
-                    $("#exampleModalLong1").show();
                 })
             })
         });
     });
+    //delete item button
     $(document).on("click", ".delete-item", function (event) {
         var id = $(this).data("id");
         // console.log(id);
