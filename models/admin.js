@@ -1,5 +1,4 @@
 var orm = require("../config/orm.js");
-
 var menu = {
     selectAll: function(cb) {
         orm.selectAll("menu", function(res) {
@@ -24,5 +23,4 @@ var menu = {
         })
     }
 }
-
 module.exports = menu;

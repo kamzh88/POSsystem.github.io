@@ -1,5 +1,4 @@
 var connection = require("./connection.js");
-
 function printQuestionMarks(num) {
     var arr = [];
 
@@ -9,10 +8,8 @@ function printQuestionMarks(num) {
 
     return arr.toString();
 }
-
 function objToSql(ob) {
     var arr = [];
-
     // loop through the keys and push the key/value as a string int arr
     for (var key in ob) {
         var value = ob[key];
@@ -31,7 +28,6 @@ function objToSql(ob) {
     // translate array of strings to a single comma-separated string
     return arr.toString();
 }
-
 var orm = {
     selectAll: function (tableInput, cb) {
         var queryString = "SELECT * FROM " + tableInput + ";";
@@ -73,5 +69,4 @@ var orm = {
         });
     }
 }
-
 module.exports = orm;
