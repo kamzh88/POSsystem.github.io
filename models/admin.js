@@ -21,6 +21,13 @@ var menu = {
             cb(res);
             // console.log(res);
         })
+    },
+    updateOne: function(objColVals, condition, cb) {
+        // console.log(objColVals);
+        // console.log(condition);
+        orm.updateOne("menu", objColVals, condition, function(res) {
+            cb(res);
+        })
     }
 }
 module.exports = menu;

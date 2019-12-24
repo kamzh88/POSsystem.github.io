@@ -15,9 +15,9 @@ $(function () {
                 <h4 class="panel-title"><a data-toggle="collapse" href="#collapse${i}">Edit</a></h4>
                 <div id="collapse${i}" class="panel-collapse collapse">
                   <div class="panel-body">
-                  <form class="edit-form">
+                  <form class="edit-form" data-id="${items[i].id}">
                       <div class="form-group">
-                          <label for="new-name${i}" data-id="${items[i].id}">Item Name</label>
+                          <label for="new-name${i}">Item Name</label>
                           <input type="text" class="item-name" >
                       </div>
                       <div class="form-group">
@@ -42,16 +42,27 @@ $(function () {
                 menuElem.append(new_elem);    
             };
             $(".edit-form").on("submit", function(event) {
+                event.preventDefault();
+                var id = $(this).data("id");
                 var itemName = $(event.target).closest("item-name").context[0].value;
                 var categoryName = $(event.target).closest("item-name").context[1].value;
                 var itemPrice = $(event.target).closest("item-name").context[2].value;
-                var newItem = {
+                var editItem = {
                     item_name: itemName,
                     category: categoryName,
                     selected: 0,
                     price: itemPrice
-                }
-                console.log(newItem);
+                };
+                console.log(editItem);
+                $.ajax("/api/menu/" + id, {
+                    type: "PUT",
+                    data: JSON.stringify(editItem),
+                    dataType:'json',
+                    contentType: 'application/json'
+                }).then(function() {
+                    console.log("menu item changed", id);
+                    location.reload();
+                })
             })
         });
         //add items button
