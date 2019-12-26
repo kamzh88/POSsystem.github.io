@@ -18,22 +18,40 @@ $(function () {
             var itemsDiv = $('#items-div');
             var categorybtn = $(this).data("category");
             var len = data.menu.length;
+            itemsDiv.empty();
             // console.log(len);
             // console.log(data.menu[0].category)
             for (var i = 0; i < len; i++) {
                 if (categorybtn === data.menu[i].category) {
-                    console.log(data.menu[i].item_name);
+                    // console.log(data.menu[i].item_name);
                     var itemName = data.menu[i].item_name
-                    var new_elem =`<button class='.itembtn' data-item=${itemName}>${itemName}</button>`
+                    var new_elem =`<button class='itembtn' data-id=${data.menu[i].id} data-item=${itemName}>${itemName}</button>`
                     itemsDiv.append(new_elem);
                 }
             };
         })
-
-
-
-
-
+        $(document).on("click", ".itembtn", function (event) {
+            // console.log(data);
+            var id = $(this).data("id")
+            // console.log(id);
+            var orderDiv = $('#order-div');
+            var len = data.menu.length;
+            // orderDiv.empty();
+            for (var i = 0; i < len; i++) {
+                if (id === data.menu[i].id) {
+                    var itemName = data.menu[i].item_name;
+                    var itemPrice = data.menu[i].price;
+                    // console.log("Item Name: " + itemName);
+                    // console.log("Item Price: " + itemPrice);
+                    var new_elem = `
+                    Item Name: ${itemName}
+                    <br>
+                    Price: $${itemPrice}
+                    <br><br>`;
+                    orderDiv.append(new_elem);
+                }
+            }
+        })
         //Edit Menu Button
         $(document).on("click", "#menu-changes", function (event) {
             // console.log(data.menu);
@@ -124,12 +142,7 @@ $(function () {
                           <button type="submit" class="btn btn-primary submit">Edit</button>
                   </form>
                       </div>
-                    </div></ul>`);
-                    // item_name = $(event.target).closest(".edit-heading").prevObject.context[0]
-                    // var editHeadingdiv = $(".edit-heading");
-                    // var new_elem = `hi`;
-                    
-                    
+                    </div></ul>`);       
                 })
             })
         });
@@ -172,6 +185,7 @@ $(function () {
     });
     //exampleModalLong2 Close button
     $(document).on("click", "#modal2", function (event) {
-        $(".modal-body").empty();
+        // $(".modal-body").empty();
+        $(".edit-heading").empty();
     });
 })
