@@ -42,6 +42,7 @@ router.post("/api/menu", function (req, res) {
         [req.body.item_name, req.body.category, req.body.selected, req.body.price],
         function (result) {
             res.json({ id: result.insertId });
+            
         }
     )
 })
@@ -57,7 +58,14 @@ router.put("/api/menu/:id", function (req, res) {
         if (result.changedRows == 0) {
             return res.status(404).end();
         } else {
-            res.json({ id: req.params.id });
+            console.log(req.body.item_name);
+            res.json({ 
+                id: req.params.id,
+                item_name: req.body.item_name,
+                category: req.body.category,
+                selected: req.body.selected,
+                price: req.body.price
+            });
         }
     }
     )

@@ -2,6 +2,38 @@ $(function () {
     $.ajax("/api/menu", {
         type: "GET"
     }).then(function (data) {
+        // console.log(data.menu[0].category);
+        //append category onto the page
+        var categoryElem = $('#category-div');
+        var category = ["Chicken", "Beef", "Appetizers", "Vegetables", "Seafood"];
+        var len = category.length;
+        for (var i = 0; i < len; i++) {
+            var new_elem = `<button class='categorybtn' data-id=${data.menu} data-category=${category[i]}>${category[i]}</button>`
+            categoryElem.append(new_elem);
+        }
+        //categorybtn data
+        $(document).on("click", ".categorybtn", function (event) {
+            // console.log(data.menu);
+            // console.log($(this).data("category"));
+            var itemsDiv = $('#items-div');
+            var categorybtn = $(this).data("category");
+            var len = data.menu.length;
+            // console.log(len);
+            // console.log(data.menu[0].category)
+            for (var i = 0; i < len; i++) {
+                if (categorybtn === data.menu[i].category) {
+                    console.log(data.menu[i].item_name);
+                    var itemName = data.menu[i].item_name
+                    var new_elem =`<button class='.itembtn' data-item=${itemName}>${itemName}</button>`
+                    itemsDiv.append(new_elem);
+                }
+            };
+        })
+
+
+
+
+
         //Edit Menu Button
         $(document).on("click", "#menu-changes", function (event) {
             // console.log(data.menu);
@@ -10,7 +42,7 @@ $(function () {
             var len = data.menu.length;
             for (var i = 0; i < len; i++) {
                 var new_elem = `
-                <ul> ${items[i].id}. ${items[i].item_name}   $${items[i].price}
+                <ul class="edit-heading"> ${items[i].id}. ${items[i].item_name}   $${items[i].price}
                 <button class='delete-item' data-id=${items[i].id}>DELETE</button>
                 <h4 class="panel-title"><a data-toggle="collapse" href="#collapse${i}">Edit</a></h4>
                 <div id="collapse${i}" class="panel-collapse collapse">
@@ -39,9 +71,9 @@ $(function () {
               </form>
                   </div>
                 </div></ul>`
-                menuElem.append(new_elem);    
+                menuElem.append(new_elem);
             };
-            $(".edit-form").on("submit", function(event) {
+            $(".edit-form").on("submit", function (event) {
                 event.preventDefault();
                 var id = $(this).data("id");
                 var itemName = $(event.target).closest("item-name").context[0].value;
@@ -57,11 +89,47 @@ $(function () {
                 $.ajax("/api/menu/" + id, {
                     type: "PUT",
                     data: JSON.stringify(editItem),
-                    dataType:'json',
+                    dataType: 'json',
                     contentType: 'application/json'
-                }).then(function() {
+                }).then(function (data) {
                     console.log("menu item changed", id);
-                    location.reload();
+                    // location.reload();
+                    console.log(data);
+                    $(event.target).closest(".edit-heading").html(`
+                    <ul class="edit-heading"> ${id}. ${data.item_name}   $${data.price}
+                    <button class='delete-item' data-id=${id}>DELETE</button>
+                    <h4 class="panel-title"><a data-toggle="collapse" href="#collapse${i}">Edit</a></h4>
+                    <div id="collapse${i}" class="panel-collapse collapse">
+                      <div class="panel-body">
+                      <form class="edit-form" data-id="${id}">
+                          <div class="form-group">
+                              <label for="new-name${i}">Item Name</label>
+                              <input type="text" class="item-name" >
+                          </div>
+                          <div class="form-group">
+                              <label for="exampleFormControlSelect1">Category</label>
+                              <select class="form-control" class="new-name${i}">
+                                  <option>Chicken</option>
+                                  <option>Beef</option>
+                                  <option>Seafood</option>
+                                  <option>Vegetables</option>
+                                  <option>Appetizers</option>
+                              </select>
+                          </div>
+                          <div class="form-group">
+                              <label for="">Price</label>
+                              <input type="text" class="form-control" class="new-item-price${i}">
+                          </div>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary submit">Edit</button>
+                  </form>
+                      </div>
+                    </div></ul>`);
+                    // item_name = $(event.target).closest(".edit-heading").prevObject.context[0]
+                    // var editHeadingdiv = $(".edit-heading");
+                    // var new_elem = `hi`;
+                    
+                    
                 })
             })
         });
@@ -106,4 +174,4 @@ $(function () {
     $(document).on("click", "#modal2", function (event) {
         $(".modal-body").empty();
     });
-});
+})
