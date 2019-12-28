@@ -30,15 +30,20 @@ $(function () {
                 }
             };
         })
+        
+        var priceArray = [];
+
         $(document).on("click", ".itembtn", function (event) {
             // console.log(data);
+            
             var id = $(this).data("id")
             // console.log(id);
             var orderDiv = $('#order-div');
             var len = data.menu.length;
-            // orderDiv.empty();
+            
             for (var i = 0; i < len; i++) {
                 if (id === data.menu[i].id) {
+                    
                     var itemName = data.menu[i].item_name;
                     var itemPrice = data.menu[i].price;
                     // console.log("Item Name: " + itemName);
@@ -49,9 +54,29 @@ $(function () {
                     Price: $${itemPrice}
                     <br><br>`;
                     orderDiv.append(new_elem);
+                    priceArray.push(parseInt(itemPrice));
+                    var subTotal = priceArray.reduce((a,b) => a + b, 0)
+                    
+                    total(subTotal);
                 }
-            }
+            } 
         })
+        
+        function total(subTotal) {
+            var totalDiv = $("#total");
+            totalDiv.empty();
+            console.log("subtotal " + subTotal);
+            var tax = subTotal * .06625;
+            var total = subTotal * 1.06625
+            console.log("taxes " + tax);
+            console.log("Total: " + total);
+            var new_elem = `
+            <p>Subtotal: $${subTotal.toFixed(2)}<br>
+            Taxes: $${tax.toFixed(2)}<br>
+            Total: $${total.toFixed(2)}</p> `;
+            totalDiv.append(new_elem);
+        }
+        
         //Edit Menu Button
         $(document).on("click", "#menu-changes", function (event) {
             // console.log(data.menu);
