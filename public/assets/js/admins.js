@@ -25,59 +25,84 @@ $(function () {
                 if (categorybtn === data.menu[i].category) {
                     // console.log(data.menu[i].item_name);
                     var itemName = data.menu[i].item_name
-                    var new_elem =`<button class='itembtn' data-id=${data.menu[i].id} data-item=${itemName}>${itemName}</button>`
+                    var new_elem = `<button class='itembtn' data-id=${data.menu[i].id} data-item=${itemName}>${itemName}</button>`
                     itemsDiv.append(new_elem);
                 }
             };
         })
-        
-        var priceArray = [];
 
+        var priceArray = [];
+        //itemID is the ID of the on click function
+        var itemID = [];
         $(document).on("click", ".itembtn", function (event) {
             // console.log(data);
-            
-            var id = $(this).data("id")
+            id = $(this).data("id");
             // console.log(id);
             var orderDiv = $('#order-div');
             var len = data.menu.length;
-            
             for (var i = 0; i < len; i++) {
                 if (id === data.menu[i].id) {
-                    
+
                     var itemName = data.menu[i].item_name;
                     var itemPrice = data.menu[i].price;
                     // console.log("Item Name: " + itemName);
                     // console.log("Item Price: " + itemPrice);
                     var new_elem = `
-                    Item Name: ${itemName}
-                    <br>
-                    Price: $${itemPrice}
-                    <br><br>`;
+                    <div>Item Name:<span class="item-name" data-id=${id} >${itemName}</span></div>
+                    <div class="item-price">Price: $${itemPrice}</div><br>`;
                     orderDiv.append(new_elem);
                     priceArray.push(parseInt(itemPrice));
-                    var subTotal = priceArray.reduce((a,b) => a + b, 0)
-                    
+                    var subTotal = priceArray.reduce((a, b) => a + b, 0)
                     total(subTotal);
+                    itemID.push(id);
+                    
                 }
-            } 
+            }
+
         })
-        
+
+        $(".form-orderlist").on("submit", function (event) {
+            event.preventDefault();
+            // var itemName = $('.item-name')
+            // var len = itemName.length
+            // for (var j = 0; j < len; j++) {
+            //     console.log($(".item-name")[j].innerText);
+                
+            // };
+            // console.log(itemID);
+            // console.log(itemID[0]);
+
+            var len = data.menu.length;
+            for (var i = 0; i < len; i++) {
+                for (var j = 0; j < len; j++) {
+                    if (itemID[j] === data.menu[i].id) {
+                        console.log(data.menu[i]);
+                    }
+                }
+                // console.log(itemID[i]);
+                // console.log(`database id ${data.menu[i].id}`);
+                
+            }
+        })
         function total(subTotal) {
             var totalDiv = $("#total");
             totalDiv.empty();
-            console.log("subtotal " + subTotal);
             var tax = subTotal * .06625;
             var total = subTotal * 1.06625
-            console.log("taxes " + tax);
-            console.log("Total: " + total);
+            // console.log("subtotal " + subTotal);
+            // console.log("taxes " + tax);
+            // console.log("Total: " + total);
             var new_elem = `
             <p>Subtotal: $${subTotal.toFixed(2)}<br>
             Taxes: $${tax.toFixed(2)}<br>
             Total: $${total.toFixed(2)}</p> `;
             totalDiv.append(new_elem);
         }
-        
-        //Edit Menu Button
+
+
+
+
+        //Edit Menu Button on main page
         $(document).on("click", "#menu-changes", function (event) {
             // console.log(data.menu);
             var menuElem = $(".modal-body");
@@ -110,12 +135,13 @@ $(function () {
                           <input type="text" class="form-control" class="new-item-price${i}">
                       </div>
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-primary submit">Edit</button>
-              </form>
+                      <button type="submit" class="btn btn-primary submit">Save</button>
+                  </form>
                   </div>
                 </div></ul>`
                 menuElem.append(new_elem);
             };
+            //Save button in edit button modal
             $(".edit-form").on("submit", function (event) {
                 event.preventDefault();
                 var id = $(this).data("id");
@@ -164,10 +190,10 @@ $(function () {
                               <input type="text" class="form-control" class="new-item-price${i}">
                           </div>
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary submit">Edit</button>
+                          <button type="submit" class="btn btn-primary submit">Save</button>
                   </form>
                       </div>
-                    </div></ul>`);       
+                    </div></ul>`);
                 })
             })
         });
@@ -200,7 +226,7 @@ $(function () {
     //delete item button
     $(document).on("click", ".delete-item", function (event) {
         var id = $(this).data("id");
-        // console.log(id);
+        console.log(id);
         $.ajax("/api/menu/" + id, {
             type: "DELETE"
         }).then(function () {

@@ -25,8 +25,7 @@ router.get("/api/menu/:category", function (req, res) {
 });
 router.delete("/api/menu/:id", function (req, res) {
     var condition = "id = " + req.params.id;
-    console.log(condtion);
-
+    console.log(condition);
     menu.del(condition, function (result) {
         if (result.affectedRows == 0) {
             return res.status(404).end();

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,18 +12,26 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://code.jquery.com/jquery.js"></script>
 </head>
+
 <body>
-	<h1>Category</h1>
-	<div id="category-div"></div>
-	<h1>Items</h1>
-	<div id="items-div"></div>
-	<h1>Order List</h1>
-	<div id="order-div"></div>
-	<div id="total"></div>
+	<h1>Category</h1><br>
+	<div id="category-div"></div><br>
+	<h1>Items</h1><br>
+	<div id="items-div"></div><br>
+
+	<form class=form-orderlist>
+			<h1 id="order-heading">Order List</h1><br>
+			<div id="order-div"></div>
+			<div id="total"></div>
+		<button type="button" class="btn btn-secondary">Quit</button>
+		<button type="submit" class="btn btn-primary submit">Send</button>
+	</form>
+	<br><br>
 	<button id="create-items" class="btn" data-toggle='modal' data-target='#exampleModalLong1' value="create"><span>Add
 			items</span></button>
-	<br><br>
-	<button id="menu-changes" class="btn" data-toggle='modal' data-target='#exampleModalLong2' value="edit"><span>Edit Menu</span></button>
+
+	<button id="menu-changes" class="btn" data-toggle='modal' data-target='#exampleModalLong2' value="edit"><span>Edit
+			Menu</span></button>
 	<br><br>
 	<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
 		aria-hidden="true">
@@ -80,10 +89,13 @@
 				</div>
 			</div>
 		</div>
-	</div>	
+	</div>
 	<script src="https://kit.fontawesome.com/a5a0fef831.js" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
 	<script src="assets/js/admins.js"></script>
 </body>
+
 </html>
