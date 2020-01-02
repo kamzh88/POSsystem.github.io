@@ -34,6 +34,10 @@ $(function () {
         var priceArray = [];
         //itemID is the ID of the on click function
         var itemID = [];
+        var subTotal;
+        var tax;
+        var total;
+
         $(document).on("click", ".itembtn", function (event) {
             // console.log(data);
             id = $(this).data("id");
@@ -48,18 +52,19 @@ $(function () {
                     // console.log("Item Name: " + itemName);
                     // console.log("Item Price: " + itemPrice);
                     var new_elem = `
-                    <div>Item Name:<span class="item-name" data-id=${id} >${itemName}</span></div>
+                    <div>Item Name:<span class="item-name" data-id=${id} > ${itemName}</span></div>
                     <div class="item-price">Price: $${itemPrice}</div><br>`;
                     orderDiv.append(new_elem);
                     priceArray.push(parseInt(itemPrice));
-                    var subTotal = priceArray.reduce((a, b) => a + b, 0)
-                    total(subTotal);
+                    subTotal = priceArray.reduce((a, b) => a + b, 0)
+                    totals(subTotal);
                     itemID.push(id);
-                    
+
                 }
             }
 
         })
+
 
         $(".form-orderlist").on("submit", function (event) {
             event.preventDefault();
@@ -67,40 +72,60 @@ $(function () {
             // var len = itemName.length
             // for (var j = 0; j < len; j++) {
             //     console.log($(".item-name")[j].innerText);
-                
+
             // };
             // console.log(itemID);
             // console.log(itemID[0]);
-
+            var itemize = [];
             var len = data.menu.length;
             for (var i = 0; i < len; i++) {
                 for (var j = 0; j < len; j++) {
                     if (itemID[j] === data.menu[i].id) {
-                        console.log(data.menu[i]);
-                    }
-                }
-                // console.log(itemID[i]);
-                // console.log(`database id ${data.menu[i].id}`);
-                
+                        var itemName = data.menu[i].item_name;
+                        var categoryName = data.menu[i].category;
+                        var itemPrice = data.menu[i].price;
+                        var item = {
+                            item_name: itemName,
+                            category: categoryName,
+                            price: itemPrice
+                        }
+                        itemize.push(item);
+                    };
+                };
+            };
+            var customerOrder = {
+                itemize_order: itemize,
+                price: [
+                    {
+                        subtotal: subTotal,
+                        taxes: tax,
+                        total: total
+                    },
+                ]
             }
+            // console.log(itemize);
+            console.log(customerOrder);
+            console.log(JSON.stringify(customerOrder));
+            // console.log(`subtotal ${subTotal}`);
+            // console.log(`tax ${tax}`);
+            // console.log(`total ${total}`);
+
         })
-        function total(subTotal) {
+
+        function totals(subTotal) {
             var totalDiv = $("#total");
             totalDiv.empty();
-            var tax = subTotal * .06625;
-            var total = subTotal * 1.06625
+            tax = (subTotal * .06625).toFixed(2);
+            total = (subTotal * 1.06625).toFixed(2);
             // console.log("subtotal " + subTotal);
             // console.log("taxes " + tax);
             // console.log("Total: " + total);
-            var new_elem = `
+            var total_elem = `
             <p>Subtotal: $${subTotal.toFixed(2)}<br>
-            Taxes: $${tax.toFixed(2)}<br>
-            Total: $${total.toFixed(2)}</p> `;
-            totalDiv.append(new_elem);
+            Taxes: $${tax}<br>
+            Total: $${total}</p> `;
+            totalDiv.append(total_elem);
         }
-
-
-
 
         //Edit Menu Button on main page
         $(document).on("click", "#menu-changes", function (event) {
