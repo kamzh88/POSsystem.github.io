@@ -12,13 +12,6 @@ CREATE TABLE menu (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE customers (
-    id INT NOT NULL AUTO_INCREMENT,
-    customer_number VARCHAR(255) NOT NULL,
-    customer_name VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
-);
-
 CREATE TABLE employees (
     id INT NOT NULL AUTO_INCREMENT,
     employee_id INT NOT NULL,
@@ -30,6 +23,13 @@ CREATE TABLE employees (
 
 CREATE TABLE orders (
     id INT NOT NULL AUTO_INCREMENT,
-    itemize_order VARCHAR(255) NOT NULL,
-    price DECIMAL(12,2),
+    checkNumber INT NOT NULL,
+
 )
+
+CREATE TABLE customers (
+    id INT NOT NULL AUTO_INCREMENT,
+    customer_number VARCHAR(255) NOT NULL,
+    customer_name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);

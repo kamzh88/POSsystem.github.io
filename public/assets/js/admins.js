@@ -84,24 +84,25 @@ $(function () {
                         var itemName = data.menu[i].item_name;
                         var categoryName = data.menu[i].category;
                         var itemPrice = data.menu[i].price;
-                        var item = {
-                            item_name: itemName,
-                            category: categoryName,
-                            price: itemPrice
-                        }
-                        itemize.push(item);
+                        var idItem = data.menu[i].id;
+                        // var item = {
+                        //     // item_name: itemName,
+                        //     // category: categoryName,
+                        //     // price: itemPrice,
+                        //     id: idItem 
+                        // }
+
+                        itemize.push(idItem);
+                        // console.log(data.menu[i].id);
                     };
                 };
             };
             var customerOrder = {
                 itemize_order: itemize,
-                price: [
-                    {
-                        subtotal: subTotal,
-                        taxes: tax,
-                        total: total
-                    },
-                ]
+                subtotal: subTotal,
+                taxes: tax,
+                total: total,
+                
             }
             // console.log(itemize);
             console.log(customerOrder);
