@@ -1,5 +1,4 @@
 var orm = require("../config/orm.js");
-
 var menu = {
     selectAll: function(cb) {
         orm.selectAll("menu", function(res) {
@@ -16,7 +15,19 @@ var menu = {
         orm.delete("menu", condition, function(res) {
             cb(res);
         })
+    },
+    insertOne: function(cols, vals, cb) {
+        orm.insertOne("menu", cols, vals, function(res) {
+            cb(res);
+            // console.log(res);
+        })
+    },
+    updateOne: function(objColVals, condition, cb) {
+        // console.log(objColVals);
+        // console.log(condition);
+        orm.updateOne("menu", objColVals, condition, function(res) {
+            cb(res);
+        })
     }
 }
-
 module.exports = menu;

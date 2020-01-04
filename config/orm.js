@@ -1,5 +1,4 @@
 var connection = require("./connection.js");
-
 function printQuestionMarks(num) {
     var arr = [];
 
@@ -9,10 +8,8 @@ function printQuestionMarks(num) {
 
     return arr.toString();
 }
-
 function objToSql(ob) {
     var arr = [];
-
     // loop through the keys and push the key/value as a string int arr
     for (var key in ob) {
         var value = ob[key];
@@ -31,7 +28,6 @@ function objToSql(ob) {
     // translate array of strings to a single comma-separated string
     return arr.toString();
 }
-
 var orm = {
     selectAll: function (tableInput, cb) {
         var queryString = "SELECT * FROM " + tableInput + ";";
@@ -60,7 +56,29 @@ var orm = {
             }
             cb(result);
         })
+    },
+    insertOne: function (table, cols, vals, cb) {
+        var queryString = `INSERT INTO ${table} (${cols.toString()}) VALUES (${printQuestionMarks(vals.length)})`;
+        // console.log(queryString);
+        connection.query(queryString, vals, function (err, result) {
+            if (err) {
+                throw err;
+            }
+            cb(result);
+            // console.log(result);
+        });
+    },
+    updateOne: function (table, objColVals, condition, cb) {
+        var queryString = `UPDATE ${table} SET ${objToSql(objColVals)} WHERE ${condition}`;
+        // console.log(objToSql(objColVals));
+        // console.log(objColVals);
+        // console.log(queryString);
+        connection.query(queryString, function(err, result) {
+            if(err){
+                throw err;
+            }
+            cb(result);
+        })
     }
 }
-
 module.exports = orm;
