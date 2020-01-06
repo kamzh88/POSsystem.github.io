@@ -5,6 +5,11 @@ var menu = {
             cb(res);
         });
     },
+    selectOrders: function(cb) {
+        orm.selectAll("orders", function (res) {
+            cb(res);
+        })
+    },
     selectCategory: function(condition, cb) {
         orm.selectCategory("menu", condition, function (res) {
             cb(res);
@@ -18,6 +23,12 @@ var menu = {
     },
     insertOne: function(cols, vals, cb) {
         orm.insertOne("menu", cols, vals, function(res) {
+            cb(res);
+            // console.log(res);
+        })
+    },
+    insertOrder: function(cols, vals, cb) {
+        orm.insertOrder("orders", cols, vals, function(res) {
             cb(res);
             // console.log(res);
         })

@@ -8,10 +8,14 @@ router.get("/", function (req, res) {
 router.get("/admin", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/admin.html"));
 });
+router.get("/api/orders", function (req, res) {
+    menu.selectOrders(function (data) {
+        res.json({ orders: data });
+    });
+});
 router.get("/api/menu", function (req, res) {
     menu.selectAll(function (data) {
-        res.json({ menu: data });
-
+        res.json({menu: data});
     });
 });
 router.get("/api/menu/:category", function (req, res) {
@@ -42,6 +46,23 @@ router.post("/api/menu", function (req, res) {
         function (result) {
             res.json({ id: result.insertId });
             
+        }
+    )
+
+})
+router.post("/api/orders", function (req, res) {
+    // console.log(req);
+    menu.insertOrder(
+        ["itemize_id", "subtotal", "taxes","total"],
+        [req.body.itemize_id, req.body.subtotal, req.body.taxes, req.body.total],
+        function(result) { 
+            res.json({
+                itemize_id: req.body.itemize_id,
+                subtotal: req.body.subtotal,
+                taxes: req.body.taxes,
+                total: req.body.total
+            });
+            // console.log(req.body.itemize_id);
         }
     )
 })
