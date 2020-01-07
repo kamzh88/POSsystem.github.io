@@ -12,6 +12,7 @@ $(function () {
             var new_elem = `<button class='categorybtn' data-id=${data.menu} data-category=${category[i]}>${category[i]}</button>`
             categoryElem.append(new_elem);
         }
+
         //categorybtn data
         $(document).on("click", ".categorybtn", function (event) {
             // console.log(data.menu);
@@ -272,7 +273,7 @@ $(function () {
                     dataType: 'json',
                     contentType: "application/json"
                 }).then(function (result) {
-                    // location.reload();
+                    location.reload();
                     console.log(result);
                 })
             })
