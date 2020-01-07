@@ -108,54 +108,36 @@ $(function () {
             $.ajax("/api/orders", {
                 type: "GET"
             }).then(function (result) {
-
+                var order_div = $(".modal-body");
+                // order_div.empty();
                 for (var i = 0; i < result.orders.length; i++) {
-                    // console.log(result.orders[i]);
+                    console.log("Ticket Number: " + result.orders[i].id);
+                    var ticketNumber = result.orders[i].id;
+                    var ticketNumber_elem = `
+                    <div class= "order"
+                    <h4 class="panel-title"><a data-toggle="collapse" href="#collapse${i}">${ticketNumber}</a></h4></div>`;
+                    order_div.append(ticketNumber_elem);
+                    // ticketNumberArray.push(ticketNumber);
                     for (var j = 0; j < result.orders[i].itemize_id.length; j++) {
                         for (var k = 0; k < data.menu.length; k++) {
-                            // console.log(data.menu[k]);
                             var itemID = parseFloat(result.orders[i].itemize_id[j]);
-                            // console.log(itemID);
-                            // console.log(data.menu[k].id);
                             if (itemID === data.menu[k].id) {
-                                console.log(data.menu[k].item_name);
-                                console.log(data.menu[k].price);
+                                var item_name = data.menu[k].item_name;
+                                var item_price = data.menu[k].price;
+                                console.log(`Item Name: ${data.menu[k].item_name} Price: $${data.menu[k].price}`);
+                                var order_elem = `
+                                <div id="collapse${i}" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                <p>${item_name} $${item_price}</p>
+                                </div>
+                                </div>
+                                </div>`
+                                order_div.append(order_elem);
                             }
                         }
-
                     }
                 }
-
-
-
-                // var lenj = data.menu.length
-                // console.log(leni);
-                // for (var i = 0; i < leni; i++) {
-                //     var leni = result.orders[i].itemize_id.length;
-                //     for (var j = 0; j < lenj; j++) {
-                //         var dataID = data.menu[j].id;
-                //         var itemID = result.orders[i].itemize_id;
-                //         if (itemID === dataID) {
-                //             console.log(itemID)
-                //             console.log(dataID);
-                //             // console.log(result.orders[i].itemize_id);
-                //             // console.log(data.menu[itemID].item_name);
-                //             var orderID = result.orders[i].id;
-                //             var order_div = $(".modal-body");
-                //             var order_elem = `
-                //             <h4 class="panel-title"><a data-toggle="collapse" href="#collapse${i}">${orderID}</a></h4>
-                //             <div id="collapse${i}" class="panel-collapse collapse">
-                //             <div class="panel-body">
-                //             <p>hi</p>
-                //             </div>
-                //             </div>`;
-                //             order_div.append(order_elem);
-                //         }
-                //     }
-                // }
-
-
-
+                console.log(ticketNumber);
             })
         });
 
@@ -309,7 +291,11 @@ $(function () {
     });
     //exampleModalLong2 Close button
     $(document).on("click", "#modal2", function (event) {
-        // $(".modal-body").empty();
         $(".edit-heading").empty();
     });
+    //exampleModalLong3 Close button
+    $(document).on("click", "#modal3", function (event) {
+        $(".order").empty();
+    });
+
 })
