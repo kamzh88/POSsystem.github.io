@@ -2,6 +2,7 @@ $(function () {
     $.ajax("/api/menu", {
         type: "GET"
     }).then(function (data) {
+        // console.log(data);
         // console.log(data.menu[0].category);
         //append category onto the page
         var categoryElem = $('#category-div');
@@ -29,6 +30,7 @@ $(function () {
                     itemsDiv.append(new_elem);
                 }
             };
+            console.log(data);
         })
 
         var priceArray = [];
@@ -37,7 +39,6 @@ $(function () {
         var subTotal;
         var tax;
         var total;
-
         $(document).on("click", ".itembtn", function (event) {
             // console.log(data);
             id = $(this).data("id");
@@ -46,7 +47,6 @@ $(function () {
             var len = data.menu.length;
             for (var i = 0; i < len; i++) {
                 if (id === data.menu[i].id) {
-
                     var itemName = data.menu[i].item_name;
                     var itemPrice = data.menu[i].price;
                     // console.log("Item Name: " + itemName);
@@ -55,63 +55,109 @@ $(function () {
                     <div>Item Name:<span class="item-name" data-id=${id} > ${itemName}</span></div>
                     <div class="item-price">Price: $${itemPrice}</div><br>`;
                     orderDiv.append(new_elem);
-                    priceArray.push(parseInt(itemPrice));
+                    priceArray.push(parseFloat(itemPrice));
                     subTotal = priceArray.reduce((a, b) => a + b, 0)
                     totals(subTotal);
                     itemID.push(id);
-
                 }
             }
-
         })
-
-
+        var itemize = [];
         $(".form-orderlist").on("submit", function (event) {
             event.preventDefault();
-            // var itemName = $('.item-name')
-            // var len = itemName.length
-            // for (var j = 0; j < len; j++) {
-            //     console.log($(".item-name")[j].innerText);
 
-            // };
-            // console.log(itemID);
-            // console.log(itemID[0]);
-            var itemize = [];
             var len = data.menu.length;
             for (var i = 0; i < len; i++) {
                 for (var j = 0; j < len; j++) {
                     if (itemID[j] === data.menu[i].id) {
-                        var itemName = data.menu[i].item_name;
-                        var categoryName = data.menu[i].category;
-                        var itemPrice = data.menu[i].price;
                         var idItem = data.menu[i].id;
-                        // var item = {
-                        //     // item_name: itemName,
-                        //     // category: categoryName,
-                        //     // price: itemPrice,
-                        //     id: idItem 
-                        // }
-
                         itemize.push(idItem);
-                        // console.log(data.menu[i].id);
                     };
                 };
             };
             var customerOrder = {
-                itemize_order: itemize,
+                itemize_id: itemize,
                 subtotal: subTotal,
                 taxes: tax,
                 total: total,
-                
             }
-            // console.log(itemize);
-            console.log(customerOrder);
-            console.log(JSON.stringify(customerOrder));
-            // console.log(`subtotal ${subTotal}`);
-            // console.log(`tax ${tax}`);
-            // console.log(`total ${total}`);
-
+            $.ajax("/api/orders", {
+                type: "POST",
+                data: JSON.stringify(customerOrder),
+                dataType: 'json',
+                contentType: "application/json"
+            }).then(function (result) {
+                // location.reload();
+                id = result.itemize_id;
+                var len = data.menu.length;
+                for (var i = 0; i < len; i++) {
+                    for (var j = 0; j < len; j++) {
+                        if (id[j] === data.menu[i].id) {
+                            var itemName = data.menu[i].item_name;
+                            var categoryName = data.menu[i].category;
+                            var itemPrice = data.menu[i].price;
+                            console.log(data.menu[i].id);
+                            console.log(data.menu[i].item_name);
+                        }
+                    }
+                }
+            })
         })
+
+        $(document).on("click", "#order-list", function (event) {
+            $.ajax("/api/orders", {
+                type: "GET"
+            }).then(function (result) {
+
+                for (var i = 0; i < result.orders.length; i++) {
+                    // console.log(result.orders[i]);
+                    for (var j = 0; j < result.orders[i].itemize_id.length; j++) {
+                        for (var k = 0; k < data.menu.length; k++) {
+                            // console.log(data.menu[k]);
+                            var itemID = parseFloat(result.orders[i].itemize_id[j]);
+                            // console.log(itemID);
+                            // console.log(data.menu[k].id);
+                            if (itemID === data.menu[k].id) {
+                                console.log(data.menu[k].item_name);
+                                console.log(data.menu[k].price);
+                            }
+                        }
+
+                    }
+                }
+
+
+
+                // var lenj = data.menu.length
+                // console.log(leni);
+                // for (var i = 0; i < leni; i++) {
+                //     var leni = result.orders[i].itemize_id.length;
+                //     for (var j = 0; j < lenj; j++) {
+                //         var dataID = data.menu[j].id;
+                //         var itemID = result.orders[i].itemize_id;
+                //         if (itemID === dataID) {
+                //             console.log(itemID)
+                //             console.log(dataID);
+                //             // console.log(result.orders[i].itemize_id);
+                //             // console.log(data.menu[itemID].item_name);
+                //             var orderID = result.orders[i].id;
+                //             var order_div = $(".modal-body");
+                //             var order_elem = `
+                //             <h4 class="panel-title"><a data-toggle="collapse" href="#collapse${i}">${orderID}</a></h4>
+                //             <div id="collapse${i}" class="panel-collapse collapse">
+                //             <div class="panel-body">
+                //             <p>hi</p>
+                //             </div>
+                //             </div>`;
+                //             order_div.append(order_elem);
+                //         }
+                //     }
+                // }
+
+
+
+            })
+        });
 
         function totals(subTotal) {
             var totalDiv = $("#total");
@@ -243,8 +289,9 @@ $(function () {
                     data: JSON.stringify(newItem),
                     dataType: 'json',
                     contentType: "application/json"
-                }).then(function () {
-                    location.reload();
+                }).then(function (result) {
+                    // location.reload();
+                    console.log(result);
                 })
             })
         });

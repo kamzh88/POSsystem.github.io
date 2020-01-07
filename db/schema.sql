@@ -8,7 +8,7 @@ CREATE TABLE menu (
     item_name VARCHAR(255) NOT NULL,
     category VARCHAR(255) NOT NULL,
     selected VARCHAR(255) NOT NULL,
-    price INT(20) DECIMAL(18,2) NOT NULL,
+    price DECIMAL(18,2) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -23,9 +23,12 @@ CREATE TABLE employees (
 
 CREATE TABLE orders (
     id INT NOT NULL AUTO_INCREMENT,
-    checkNumber INT NOT NULL,
-
-)
+    itemize_id VARCHAR(255) NOT NULL,
+    subtotal DECIMAL(18,2) NOT NULL,
+    taxes DECIMAL(18,2) NOT NULL,
+    total DECIMAL(18,2) NOT NULL,
+    customer_name VARCHAR(255) NOT NULL,
+);
 
 CREATE TABLE customers (
     id INT NOT NULL AUTO_INCREMENT,
@@ -33,3 +36,7 @@ CREATE TABLE customers (
     customer_name VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE itemize_id (
+    
+)
