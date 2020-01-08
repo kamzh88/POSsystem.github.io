@@ -115,7 +115,7 @@ $(function () {
                 var order_div = $(".modal-body");
                 // order_div.empty();
                 for (var i = 0; i < result.orders.length; i++) {
-                    console.log("Ticket Number: " + result.orders[i].id);
+                    // console.log("Ticket Number: " + result.orders[i].id);
                     var ticketNumber = result.orders[i].id;
                     var ticketNumber_elem = `
                     <div class= "order"

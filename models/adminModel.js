@@ -1,4 +1,17 @@
 var orm = require("../config/orm.js");
+var moment = require('moment');
+
+var time = moment().format("hh:mm:ss");
+console.log(date);
+console.log(time);
+var dateandtime = {
+    date: function(cb) {
+        var date = moment().format("MM/DD/YYYY");
+    },
+    time: function(cb) {
+        var time = moment().format("hh:mm:ss");
+    }
+}
 var menu = {
     selectAll: function(cb) {
         orm.selectAll("menu", function(res) {
@@ -42,3 +55,4 @@ var menu = {
     }
 }
 module.exports = menu;
+module.exports = dateandtime;
