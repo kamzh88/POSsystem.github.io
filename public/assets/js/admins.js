@@ -109,6 +109,9 @@ $(function () {
             $.ajax("/api/orders", {
                 type: "GET"
             }).then(function (result) {
+                var subtotalArray = [];
+                var taxArray = [];
+                var totalArray = [];
                 var order_div = $(".modal-body");
                 // order_div.empty();
                 for (var i = 0; i < result.orders.length; i++) {
@@ -118,6 +121,13 @@ $(function () {
                     <div class= "order"
                     <h4 class="panel-title"><a data-toggle="collapse" href="#collapse${i}">${ticketNumber}</a></h4></div>`;
                     order_div.append(ticketNumber_elem);
+                    var subtotal = result.orders[i].subtotal;
+                    var tax = result.orders[i].taxes;
+                    var total = result.orders[i].total;
+                    subtotalArray.push(subtotal);
+                    taxArray.push(tax);
+                    totalArray.push(total);
+                    // console.log(total);
                     // ticketNumberArray.push(ticketNumber);
                     for (var j = 0; j < result.orders[i].itemize_id.length; j++) {
                         for (var k = 0; k < data.menu.length; k++) {
@@ -125,20 +135,33 @@ $(function () {
                             if (itemID === data.menu[k].id) {
                                 var item_name = data.menu[k].item_name;
                                 var item_price = data.menu[k].price;
-                                console.log(`Item Name: ${data.menu[k].item_name} Price: $${data.menu[k].price}`);
+                                // console.log(result.orders[i].subtotal);
                                 var order_elem = `
                                 <div id="collapse${i}" class="panel-collapse collapse">
                                 <div class="panel-body">
                                 <p>${item_name} $${item_price}</p>
                                 </div>
                                 </div>
-                                </div>`
+                             `
                                 order_div.append(order_elem);
                             }
                         }
                     }
+                    // console.log("subtotal: " + subtotalArray);
+                    // console.log("tax: " + taxArray);
+                    // console.log("total: " + totalArray);
+                    var order_elem = `
+                    <div id="collapse${i}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                    <p>Subtotal: ${subtotalArray[i]}</p>
+                    <p>Taxes: ${taxArray[i]}</p>
+                    <p>Total: ${totalArray[i]}</p>
+                    </div>
+                    </div>
+                    `
+                    order_div.append(order_elem);
                 }
-                console.log(ticketNumber);
+  
             })
         });
 
