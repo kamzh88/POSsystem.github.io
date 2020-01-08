@@ -1,7 +1,9 @@
 var express = require("express");
 var path = require("path");
+
 var router = express.Router();
 var menu = require("../models/adminModel.js");
+var moment = require("../models/adminModel.js");
 router.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
 });
@@ -17,6 +19,18 @@ router.get("/api/menu", function (req, res) {
     menu.selectAll(function (data) {
         res.json({menu: data});
     });
+});
+router.get("/api/moment", function (req, res) {
+    menu.date(function (time, date) {
+        
+        // console.log(res.json(time));
+        res.json({
+            time,
+            date
+        })
+        // console.log(time);
+    });
+    
 });
 router.get("/api/menu/:category", function (req, res) {
     var category = JSON.stringify(req.params.category)
