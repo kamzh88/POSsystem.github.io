@@ -5,9 +5,9 @@ $(function () {
         $.ajax("/api/moment", {
             type: "GET"
         }).then(function (time, date) {
-
-            console.log("time: " + time.time);
-            console.log("date: " + time.date);
+            var timeData = time.time;
+            var dateData = time.date;
+            // console.log(day);
             // console.log(data);
             // console.log(data.menu[0].category);
             //append category onto the page
@@ -46,7 +46,7 @@ $(function () {
             var subTotal;
             var tax;
             var total;
-            
+
             $(document).on("click", ".itembtn", function (event) {
                 // console.log(data);
                 id = $(this).data("id");
@@ -73,7 +73,8 @@ $(function () {
             var itemize = [];
             $(".form-orderlist").on("submit", function (event) {
                 event.preventDefault();
-
+                // console.log("time: " + timeData);
+                // console.log("date: " + dateData);
                 var len = data.menu.length;
                 for (var i = 0; i < len; i++) {
                     for (var j = 0; j < len; j++) {
@@ -88,6 +89,8 @@ $(function () {
                     subtotal: subTotal,
                     taxes: tax,
                     total: total,
+                    time: timeData,
+                    date: dateData,
                 }
                 $.ajax("/api/orders", {
                     type: "POST",
@@ -96,19 +99,20 @@ $(function () {
                     contentType: "application/json"
                 }).then(function (result) {
                     // location.reload();
-                    id = result.itemize_id;
-                    var len = data.menu.length;
-                    for (var i = 0; i < len; i++) {
-                        for (var j = 0; j < len; j++) {
-                            if (id[j] === data.menu[i].id) {
-                                var itemName = data.menu[i].item_name;
-                                var categoryName = data.menu[i].category;
-                                var itemPrice = data.menu[i].price;
-                                console.log(data.menu[i].id);
-                                console.log(data.menu[i].item_name);
-                            }
-                        }
-                    }
+                    console.log(result);
+                    // id = result.itemize_id;
+                    // var len = data.menu.length;
+                    // for (var i = 0; i < len; i++) {
+                    //     for (var j = 0; j < len; j++) {
+                    //         if (id[j] === data.menu[i].id) {
+                    //             var itemName = data.menu[i].item_name;
+                    //             var categoryName = data.menu[i].category;
+                    //             var itemPrice = data.menu[i].price;
+                    //             // console.log(data.menu[i].id);
+                    //             // console.log(data.menu[i].item_name);
+                    //         }
+                    //     }
+                    // }
                 })
             })
 
@@ -116,6 +120,7 @@ $(function () {
                 $.ajax("/api/orders", {
                     type: "GET"
                 }).then(function (result) {
+                    var dateArray = [];
                     var subtotalArray = [];
                     var taxArray = [];
                     var totalArray = [];
@@ -124,9 +129,11 @@ $(function () {
                     for (var i = 0; i < result.orders.length; i++) {
                         // console.log("Ticket Number: " + result.orders[i].id);
                         var ticketNumber = result.orders[i].id;
+                        var date = result.orders[i].date;
+                        var time = result.orders[i].time;
                         var ticketNumber_elem = `
                     <div class= "order"
-                    <h4 class="panel-title"><a data-toggle="collapse" href="#collapse${i}">${ticketNumber}</a></h4></div>`;
+                    <h4 class="panel-title"><a data-toggle="collapse" href="#collapse${i}">${ticketNumber} ${date} ${time}</a></h4></div>`;
                         order_div.append(ticketNumber_elem);
                         var subtotal = result.orders[i].subtotal;
                         var tax = result.orders[i].taxes;
@@ -134,7 +141,7 @@ $(function () {
                         subtotalArray.push(subtotal);
                         taxArray.push(tax);
                         totalArray.push(total);
-                        // console.log(total);
+                        // console.log(date);
                         // ticketNumberArray.push(ticketNumber);
                         for (var j = 0; j < result.orders[i].itemize_id.length; j++) {
                             for (var k = 0; k < data.menu.length; k++) {
@@ -332,25 +339,24 @@ $(function () {
         });
 
         // var time = [];
-        function updateTime() {
-            $.ajax("/api/moment", {
-                type: "GET"
-            }).then(function (time) {
-
-                var timeData = time.time;
-                var timeDiv = $('.time');
-                timeDiv.text(timeData);
-                // time.push(timeData);
-                // console.log(time);
-            })
-
-        }
-
-        function updateDate() {
-            
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
+  
 
     })
+
 })
+function updateTime() {
+    $.ajax("/api/moment", {
+        type: "GET"
+    }).then(function (time, date) {
+        var dateData = time.date;
+        var timeData = time.time;
+        var timeDiv = $('.time');
+        timeDiv.text(dateData + "   " + timeData);
+        // time.push(timeData);
+        // console.log(time.date);
+    })
+}
+
+
+setInterval(updateTime, 1000);
+updateTime();

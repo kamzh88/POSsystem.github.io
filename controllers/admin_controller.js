@@ -65,18 +65,20 @@ router.post("/api/menu", function (req, res) {
 
 })
 router.post("/api/orders", function (req, res) {
-    // console.log(req);
+    console.log(req);
     menu.insertOrder(
-        ["itemize_id", "subtotal", "taxes","total"],
-        [req.body.itemize_id, req.body.subtotal, req.body.taxes, req.body.total],
+        ["itemize_id", "subtotal", "taxes","total","time","date"],
+        [req.body.itemize_id, req.body.subtotal, req.body.taxes, req.body.total, req.body.time, req.body.date],
         function(result) { 
             res.json({
                 itemize_id: req.body.itemize_id,
                 subtotal: req.body.subtotal,
                 taxes: req.body.taxes,
-                total: req.body.total
+                total: req.body.total,
+                time: req.body.time,
+                date: req.body.date
             });
-            // console.log(req.body.itemize_id);
+            // console.log(req.body);
         }
     )
 })

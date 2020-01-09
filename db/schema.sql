@@ -24,10 +24,12 @@ CREATE TABLE employees (
 CREATE TABLE orders (
     id INT NOT NULL AUTO_INCREMENT,
     itemize_id VARCHAR(255) NOT NULL,
-    subtotal DECIMAL(18,2) NOT NULL,
+    subtotal  DECIMAL(18,2) NOT NULL,
     taxes DECIMAL(18,2) NOT NULL,
     total DECIMAL(18,2) NOT NULL,
-    customer_name VARCHAR(255) NOT NULL,
+    time VARCHAR(255) NOT NULL,
+    date VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id)
 );
 
 CREATE TABLE customers (

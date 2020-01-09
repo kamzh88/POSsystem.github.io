@@ -83,9 +83,12 @@ var orm = {
     },
     insertOrder: function (table, cols, vals, cb) {
         var vals0 = vals[0].join(",")
+        
         vals0 = JSON.stringify(vals0);
-        var queryString = `INSERT INTO ${table} (${cols.toString()}) VALUES (${vals0},${vals[1]},${vals[2]},${vals[3]})`;
-        // console.log(queryString);
+        vals4 = JSON.stringify(vals[4]);
+        vals5 = JSON.stringify(vals[5]);
+        var queryString = `INSERT INTO ${table} (${cols.toString()}) VALUES (${vals0},${vals[1]},${vals[2]},${vals[3]},${vals4},${vals5})`;
+        console.log(queryString);
         // console.log(vals0)
         connection.query(queryString, function (err, result) {
             if (err) {
