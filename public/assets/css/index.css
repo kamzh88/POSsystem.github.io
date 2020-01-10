@@ -1,7 +1,8 @@
 body {
-	/* margin: 0 auto; */
+	margin: 0 auto;
 	width: 100%;
-	padding: 1rem 6rem;
+	padding: 1rem;
+	background: repeat url("../images/micro_carbon.png");
 }
 
 .grid {
@@ -20,17 +21,17 @@ body {
 }
 .admin {
 	grid-area: admin;
-	justify-self: end;
+	/* justify-self: end; */
 }
 .keypad {
 	grid-area: keypad;
-	justify-self: start;
+	/* justify-self: start; */
 }
 
 .header {
 	border: 1px solid black;
 	border-radius: 1rem;
-	background-color: lightgray;
+	background-color: white;
 	margin: 1rem;
 	padding: 2rem;
 	text-align: center;

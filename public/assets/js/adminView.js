@@ -173,6 +173,13 @@ $(function () {
                     </div>
                     </div>
                     `
+
+//                     order_div.append(order_elem);
+//                 }
+
+//             })
+//         });
+
                         order_div.append(order_elem);
                     }
 
@@ -203,7 +210,7 @@ $(function () {
                 for (var i = 0; i < len; i++) {
                     var new_elem = `
                 <ul class="edit-heading"> ${items[i].id}. ${items[i].item_name}   $${items[i].price}
-                <button class='delete-item' data-id=${items[i].id}>DELETE</button>
+                <button class='delete-item' data-id=${items[i].id}><i class="fas fa-window-close"></i></button>
                 <h4 class="panel-title"><a data-toggle="collapse" href="#collapse${i}">Edit</a></h4>
                 <div id="collapse${i}" class="panel-collapse collapse">
                   <div class="panel-body">
