@@ -3,7 +3,6 @@ var path = require("path");
 
 var router = express.Router();
 var menu = require("../models/adminModel.js");
-var moment = require("../models/adminModel.js");
 
 router.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));

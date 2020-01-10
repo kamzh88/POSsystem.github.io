@@ -1,7 +1,12 @@
 $(document).ready(function () {
-	$(".btn").on("click", function () {
-		if ($(this).hasClass("btn-primary")) {
-			$(".employeeID").append($(this).attr("value"));
-		}
-	});
-});
+	$(function () {
+		$.ajax("/api/menu", {
+			type: "GET"
+		}).then(function (data) {
+			console.log(data);
+			$("#createEmployee").on("click", function () {
+				
+			})
+		});
+	})
+})
