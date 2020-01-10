@@ -29,4 +29,7 @@ INSERT INTO menu(item_name, category, selected, price)
 VALUES ("Beef Sample 4", "Beef", false, 33.00);
 
 INSERT INTO customers(customer_number, customer_name)
-VALUES ("973-450-8168", China Star);
+VALUES ("888-888-888", John);
+
+INSERT INTO orders(itemize_id, subtotal,taxes,total,time,date)
+VALUES ("1,2,3", 34.95, 2.32, 37.27, "01:39:31PM", "01/09/2020");
