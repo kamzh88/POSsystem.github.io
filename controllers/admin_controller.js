@@ -1,23 +1,42 @@
 var express = require("express");
 var path = require("path");
+
 var router = express.Router();
 var menu = require("../models/adminModel.js");
+var moment = require("../models/adminModel.js");
+
 router.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
 });
+
 router.get("/admin", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/admin.html"));
 });
+
 router.get("/api/orders", function (req, res) {
     menu.selectOrders(function (data) {
         res.json({ orders: data });
     });
 });
+
 router.get("/api/menu", function (req, res) {
     menu.selectAll(function (data) {
         res.json({menu: data});
     });
 });
+
+router.get("/api/moment", function (req, res) {
+    menu.date(function (time, date) {
+        
+        // console.log(res.json(time));
+        res.json({
+            time,
+            date
+        })
+        // console.log(time);
+    });
+});
+
 router.get("/api/menu/:category", function (req, res) {
     var category = JSON.stringify(req.params.category)
     var condition = "category = " + category;
@@ -27,9 +46,10 @@ router.get("/api/menu/:category", function (req, res) {
         res.json({ menu: data });
     });
 });
+
 router.delete("/api/menu/:id", function (req, res) {
     var condition = "id = " + req.params.id;
-    console.log(condition);
+    // console.log(condition);
     menu.del(condition, function (result) {
         if (result.affectedRows == 0) {
             return res.status(404).end();
@@ -38,8 +58,9 @@ router.delete("/api/menu/:id", function (req, res) {
         };
     })
 })
+
 router.post("/api/menu", function (req, res) {
-    console.log(req);
+    // console.log(req);
     menu.insertOne(
         ["item_name", "category", "selected", "price"],
         [req.body.item_name, req.body.category, req.body.selected, req.body.price],
@@ -50,22 +71,26 @@ router.post("/api/menu", function (req, res) {
     )
 
 })
+
 router.post("/api/orders", function (req, res) {
     // console.log(req);
     menu.insertOrder(
-        ["itemize_id", "subtotal", "taxes","total"],
-        [req.body.itemize_id, req.body.subtotal, req.body.taxes, req.body.total],
+        ["itemize_id", "subtotal", "taxes","total","time","date"],
+        [req.body.itemize_id, req.body.subtotal, req.body.taxes, req.body.total, req.body.time, req.body.date],
         function(result) { 
             res.json({
                 itemize_id: req.body.itemize_id,
                 subtotal: req.body.subtotal,
                 taxes: req.body.taxes,
-                total: req.body.total
+                total: req.body.total,
+                time: req.body.time,
+                date: req.body.date
             });
-            // console.log(req.body.itemize_id);
+            // console.log(req.body);
         }
     )
 })
+
 router.put("/api/menu/:id", function (req, res) {
     var condition = "id = " + req.params.id;
     // console.log(condition);
@@ -78,7 +103,7 @@ router.put("/api/menu/:id", function (req, res) {
         if (result.changedRows == 0) {
             return res.status(404).end();
         } else {
-            console.log(req.body.item_name);
+            // console.log(req.body.item_name);
             res.json({ 
                 id: req.params.id,
                 item_name: req.body.item_name,
@@ -90,4 +115,5 @@ router.put("/api/menu/:id", function (req, res) {
     }
     )
 })
+
 module.exports = router;
