@@ -34,7 +34,7 @@ var menu = {
         })
     },
     insertEmployee: function (cols, vals, cb) {
-        orm.insertOne("employees", cols, vals, function (res) {
+        orm.insertEmployee("employees", cols, vals, function (res) {
             cb(res);
             // console.log(res);
         })

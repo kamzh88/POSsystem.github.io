@@ -84,7 +84,6 @@ var orm = {
     },
     insertOrder: function (table, cols, vals, cb) {
         var vals0 = vals[0].join(",")
-        
         vals0 = JSON.stringify(vals0);
         vals4 = JSON.stringify(vals[4]);
         vals5 = JSON.stringify(vals[5]);
@@ -99,5 +98,20 @@ var orm = {
             // console.log(result);
         });
     },
+    insertEmployee: function (table, cols, vals, cb) {
+        var vals0 = vals[0].join(",");
+        vals0 = JSON.stringify(vals0);
+        vals1 = JSON.stringify(vals[1]);
+        vals2 = JSON.stringify(vals[2]);
+        // console.log(vals0);
+        var queryString = `INSERT INTO ${table} (${cols.toString()}) VALUES (${vals0},${vals1},${vals2},${vals[3]})`;
+        console.log(queryString);
+        connection.query(queryString, function (err, result) {
+            if (err) {
+                throw err;
+            }
+            cb(result);
+        })
+    }
 }
 module.exports = orm;

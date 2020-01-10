@@ -34,5 +34,5 @@ VALUES ("888-888-888", John);
 INSERT INTO orders(itemize_id, subtotal,taxes,total,time,date)
 VALUES ("1,2,3", 34.95, 2.32, 37.27, "01:39:31PM", "01/09/2020");
 
-INSERT INTO employees (employee_id, employee_firstName, employee_lastName, employee_position)
-VALUES (8,"John","Doe","Cashier");
+INSERT INTO employees (employee_position,employee_firstName,employee_lastName,employee_id) 
+VALUES ("Orders,Employees,Menu","John","Doe",99)

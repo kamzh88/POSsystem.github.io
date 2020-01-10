@@ -78,16 +78,16 @@ router.post("/api/menu", function (req, res) {
 })
 
 router.post("/api/employee", function (req, res) {
-    console.log(req.body);
+    // console.log(req.body);
     menu.insertEmployee(
-        ["employee_firstName", "employee_lastName", "employee_position", "employee_id"],
-        [req.body.employee_firstName, req.body.employee_lastName, req.body.employee_position, req.body.employee_id],
+        ["employee_position", "employee_firstName", "employee_lastName", "employee_id"],
+        [req.body.employee_position, req.body.employee_firstName, req.body.employee_lastName, req.body.employee_id],
         function (result) {
             // console.log(res);
             res.json({
+                employee_position: req.body.employee_position,
                 employee_firstName: req.body.employee_firstName,
                 employee_lastName: req.body.employee_lastName,
-                employee_position: req.body.employee_position,
                 employee_id: req.body.employee_id
             });
         }
