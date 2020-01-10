@@ -31,12 +31,13 @@ function objToSql(ob) {
 var orm = {
     selectAll: function (tableInput, cb) {
         var queryString = "SELECT * FROM " + tableInput + ";";
-        // console.log(queryString);
+        console.log(queryString);
         connection.query(queryString, function (err, result) {
             if (err) {
                 throw err;
             }
             cb(result);
+            console.log(result);
         });
     },
     selectCategory: function (tableInput, condition, cb) {

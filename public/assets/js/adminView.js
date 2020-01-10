@@ -238,6 +238,7 @@ $(function () {
                   </form>
                   </div>
                 </div></ul>`
+                
                     menuElem.append(new_elem);
                 };
                 //Save button in edit button modal
@@ -338,11 +339,11 @@ $(function () {
         });
         //exampleModalLong2 Close button
         $(document).on("click", "#modal2", function (event) {
-            $(".edit-heading").empty();
+            $(".edit-heading").remove();
         });
         //exampleModalLong3 Close button
         $(document).on("click", "#modal3", function (event) {
-            $(".order").empty();
+            $(".order").remove();
         });
 
         // var time = [];

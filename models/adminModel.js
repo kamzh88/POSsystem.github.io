@@ -6,6 +6,11 @@ var menu = {
             cb(res);
         });
     },
+    selectEmployee: function(cb) {
+        orm.selectAll("employees", function (res) {
+            cb(res);
+        })
+    },
     selectOrders: function (cb) {
         orm.selectAll("orders", function (res) {
             cb(res);
@@ -22,8 +27,14 @@ var menu = {
             cb(res);
         })
     },
-    insertOne: function (cols, vals, cb) {
+    insertItem: function (cols, vals, cb) {
         orm.insertOne("menu", cols, vals, function (res) {
+            cb(res);
+            // console.log(res);
+        })
+    },
+    insertEmployee: function (cols, vals, cb) {
+        orm.insertOne("employees", cols, vals, function (res) {
             cb(res);
             // console.log(res);
         })

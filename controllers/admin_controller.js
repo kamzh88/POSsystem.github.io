@@ -18,16 +18,22 @@ router.get("/api/orders", function (req, res) {
     });
 });
 
+router.get("/api/employee", function (req, res) {
+    menu.selectEmployee(function (data) {
+        // console.log(data);
+        res.json({ employee: data });
+    });
+});
+
 router.get("/api/menu", function (req, res) {
     menu.selectAll(function (data) {
-        res.json({menu: data});
+        res.json({ menu: data });
     });
 });
 
 router.get("/api/moment", function (req, res) {
     menu.date(function (time, date) {
-        
-        // console.log(res.json(time));
+
         res.json({
             time,
             date
@@ -60,23 +66,40 @@ router.delete("/api/menu/:id", function (req, res) {
 
 router.post("/api/menu", function (req, res) {
     // console.log(req);
-    menu.insertOne(
+    menu.insertItem(
         ["item_name", "category", "selected", "price"],
         [req.body.item_name, req.body.category, req.body.selected, req.body.price],
         function (result) {
             res.json({ id: result.insertId });
-            
+
         }
     )
 
 })
 
+router.post("/api/employee", function (req, res) {
+    console.log(req.body);
+    menu.insertEmployee(
+        ["employee_firstName", "employee_lastName", "employee_position", "employee_id"],
+        [req.body.employee_firstName, req.body.employee_lastName, req.body.employee_position, req.body.employee_id],
+        function (result) {
+            // console.log(res);
+            res.json({
+                employee_firstName: req.body.employee_firstName,
+                employee_lastName: req.body.employee_lastName,
+                employee_position: req.body.employee_position,
+                employee_id: req.body.employee_id
+            });
+        }
+    )
+})
+
 router.post("/api/orders", function (req, res) {
     // console.log(req);
     menu.insertOrder(
-        ["itemize_id", "subtotal", "taxes","total","time","date"],
+        ["itemize_id", "subtotal", "taxes", "total", "time", "date"],
         [req.body.itemize_id, req.body.subtotal, req.body.taxes, req.body.total, req.body.time, req.body.date],
-        function(result) { 
+        function (result) {
             res.json({
                 itemize_id: req.body.itemize_id,
                 subtotal: req.body.subtotal,
@@ -103,7 +126,7 @@ router.put("/api/menu/:id", function (req, res) {
             return res.status(404).end();
         } else {
             // console.log(req.body.item_name);
-            res.json({ 
+            res.json({
                 id: req.params.id,
                 item_name: req.body.item_name,
                 category: req.body.category,
