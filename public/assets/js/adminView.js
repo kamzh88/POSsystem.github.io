@@ -69,29 +69,10 @@ $(document).ready(function () {
                         totals(subTotal);
                         itemID.push(id);
 
-//                 $(document).on("click", ".itembtn", function (event) {
-//                     // console.log(data);
-//                     id = $(this).data("id");
-//                     // console.log(id);
-//                     var orderDiv = $('#order-div');
-//                     var len = data.menu.length;
-//                     for (var i = 0; i < len; i++) {
-//                         if (id === data.menu[i].id) {
-//                             var itemName = data.menu[i].item_name;
-//                             var itemPrice = data.menu[i].price;
-//                             // console.log("Item Name: " + itemName);
-//                             // console.log("Item Price: " + itemPrice);
-//                             var new_elem = `
-//                     <div>Item Name:<span class="item-name" data-id=${id} > ${itemName}</span></div>
-//                     <div class="item-price">Price: $${itemPrice}</div><br>`;
-//                             orderDiv.append(new_elem);
-//                             priceArray.push(parseFloat(itemPrice));
-//                             subTotal = priceArray.reduce((a, b) => a + b, 0)
-//                             totals(subTotal);
-//                             itemID.push(id);
-//                         }
+
 
                     }
+                }
                 })
                 var itemize = [];
                 $(".form-orderlist").on("submit", function (event) {
@@ -147,7 +128,7 @@ $(document).ready(function () {
                         var subtotalArray = [];
                         var taxArray = [];
                         var totalArray = [];
-                        var order_div = $(".modal-body");
+                        var order_div = $(".body3");
                         // order_div.empty();
                         for (var i = 0; i < result.orders.length; i++) {
                             // console.log("Ticket Number: " + result.orders[i].id);
@@ -399,6 +380,7 @@ $(document).ready(function () {
             //exampleModalLong3 Close button
             $(document).on("click", "#modal3", function (event) {
                 $(".order").remove();
+                
             });
 
             // var time = [];
@@ -408,10 +390,6 @@ $(document).ready(function () {
         })
 
     })
-
-  
-
-
 
     function updateTime() {
         $.ajax("/api/moment", {
@@ -429,3 +407,24 @@ $(document).ready(function () {
     setInterval(updateTime, 1000);
     updateTime();
 })
+//                 $(document).on("click", ".itembtn", function (event) {
+//                     // console.log(data);
+//                     id = $(this).data("id");
+//                     // console.log(id);
+//                     var orderDiv = $('#order-div');
+//                     var len = data.menu.length;
+//                     for (var i = 0; i < len; i++) {
+//                         if (id === data.menu[i].id) {
+//                             var itemName = data.menu[i].item_name;
+//                             var itemPrice = data.menu[i].price;
+//                             // console.log("Item Name: " + itemName);
+//                             // console.log("Item Price: " + itemPrice);
+//                             var new_elem = `
+//                     <div>Item Name:<span class="item-name" data-id=${id} > ${itemName}</span></div>
+//                     <div class="item-price">Price: $${itemPrice}</div><br>`;
+//                             orderDiv.append(new_elem);
+//                             priceArray.push(parseFloat(itemPrice));
+//                             subTotal = priceArray.reduce((a, b) => a + b, 0)
+//                             totals(subTotal);
+//                             itemID.push(id);
+//                         }
