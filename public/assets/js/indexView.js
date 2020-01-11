@@ -57,6 +57,7 @@ $(document).ready(function () {
 			})
 		})
 	})
+	
 	function updateTime() {
 		$.ajax("/api/moment", {
 			type: "GET"
@@ -68,7 +69,7 @@ $(document).ready(function () {
 		})
 	}
 	
-	
 	setInterval(updateTime, 1000);
 	updateTime();
+
 })
