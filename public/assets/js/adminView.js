@@ -19,6 +19,7 @@ $(document).ready(function () {
                     var new_elem = `<button class='categorybtn' data-id=${data.menu} data-category=${category[i]}>${category[i]}</button>`
                     categoryElem.append(new_elem);
                 }
+
                 //categorybtn data
                 $(document).on("click", ".categorybtn", function (event) {
                     // console.log(data.menu);
@@ -47,52 +48,30 @@ $(document).ready(function () {
                 var tax;
                 var total;
 
-
-            $(document).on("click", ".itembtn", function (event) {
-                // console.log(data);
-                id = $(this).data("id");
-                // console.log(id);
-                var orderDiv = $('#order-div');
-                var len = data.menu.length;
-                for (var i = 0; i < len; i++) {
-                    if (id === data.menu[i].id) {
-                        var itemName = data.menu[i].item_name;
-                        var itemPrice = data.menu[i].price;
-                        // console.log("Item Name: " + itemName);
-                        // console.log("Item Price: " + itemPrice);
-                        var new_elem = `
+                $(document).on("click", ".itembtn", function (event) {
+                    // console.log(data);
+                    id = $(this).data("id");
+                    // console.log(id);
+                    var orderDiv = $('#order-div');
+                    var len = data.menu.length;
+                    for (var i = 0; i < len; i++) {
+                        if (id === data.menu[i].id) {
+                            var itemName = data.menu[i].item_name;
+                            var itemPrice = data.menu[i].price;
+                            // console.log("Item Name: " + itemName);
+                            // console.log("Item Price: " + itemPrice);
+                            var new_elem = `
                             <div><span class="item-name" data-id=${id}>${itemName}</span><span class="boldCSS">$${itemPrice}</span></div>
                             </div>`;
-                        orderDiv.append(new_elem);
-                        priceArray.push(parseFloat(itemPrice));
-                        subTotal = priceArray.reduce((a, b) => a + b, 0)
-                        totals(subTotal);
-                        itemID.push(id);
-
-//                 $(document).on("click", ".itembtn", function (event) {
-//                     // console.log(data);
-//                     id = $(this).data("id");
-//                     // console.log(id);
-//                     var orderDiv = $('#order-div');
-//                     var len = data.menu.length;
-//                     for (var i = 0; i < len; i++) {
-//                         if (id === data.menu[i].id) {
-//                             var itemName = data.menu[i].item_name;
-//                             var itemPrice = data.menu[i].price;
-//                             // console.log("Item Name: " + itemName);
-//                             // console.log("Item Price: " + itemPrice);
-//                             var new_elem = `
-//                     <div>Item Name:<span class="item-name" data-id=${id} > ${itemName}</span></div>
-//                     <div class="item-price">Price: $${itemPrice}</div><br>`;
-//                             orderDiv.append(new_elem);
-//                             priceArray.push(parseFloat(itemPrice));
-//                             subTotal = priceArray.reduce((a, b) => a + b, 0)
-//                             totals(subTotal);
-//                             itemID.push(id);
-//                         }
-
+                            orderDiv.append(new_elem);
+                            priceArray.push(parseFloat(itemPrice));
+                            subTotal = priceArray.reduce((a, b) => a + b, 0)
+                            totals(subTotal);
+                            itemID.push(id);
+                        }
                     }
                 })
+
                 var itemize = [];
                 $(".form-orderlist").on("submit", function (event) {
                     event.preventDefault();
@@ -196,22 +175,22 @@ $(document).ready(function () {
                     </div>
                     </div>
                     `
-                     order_div.append(order_elem);
+                            order_div.append(order_elem);
                         }
 
                     })
                 });
 
 
-            function totals(subTotal) {
-                var totalDiv = $("#total");
-                totalDiv.empty();
-                tax = (subTotal * .06625).toFixed(2);
-                total = (subTotal * 1.06625).toFixed(2);
-                // console.log("subtotal " + subTotal);
-                // console.log("taxes " + tax);
-                // console.log("Total: " + total);
-                var total_elem = `
+                function totals(subTotal) {
+                    var totalDiv = $("#total");
+                    totalDiv.empty();
+                    tax = (subTotal * .06625).toFixed(2);
+                    total = (subTotal * 1.06625).toFixed(2);
+                    // console.log("subtotal " + subTotal);
+                    // console.log("taxes " + tax);
+                    // console.log("Total: " + total);
+                    var total_elem = `
                 <div class="totalGrid">
                     <div class="subtotalCSS">
                         Subtotal: <span class="boldCSS">$${subTotal.toFixed(2)}</span>
@@ -223,24 +202,8 @@ $(document).ready(function () {
                         Total: <span class="boldCSS">$${total}</span>
                     </div>
                 </div>`;
-                totalDiv.append(total_elem);
-            }
-
-//                 function totals(subTotal) {
-//                     var totalDiv = $("#total");
-//                     totalDiv.empty();
-//                     tax = (subTotal * .06625).toFixed(2);
-//                     total = (subTotal * 1.06625).toFixed(2);
-//                     // console.log("subtotal " + subTotal);
-//                     // console.log("taxes " + tax);
-//                     // console.log("Total: " + total);
-//                     var total_elem = `
-//             <p>Subtotal: $${subTotal.toFixed(2)}<br>
-//             Taxes: $${tax}<br>
-//             Total: $${total}</p> `;
-//                     totalDiv.append(total_elem);
-//                 }
-
+                    totalDiv.append(total_elem);
+                }
 
                 //Edit Menu Button on main page
                 $(document).on("click", "#menu-changes", function (event) {
@@ -338,6 +301,7 @@ $(document).ready(function () {
                         })
                     })
                 });
+
                 //add items button
                 $(document).on("click", "#create-items", function (event) {
                     console.log(data.menu);
@@ -364,22 +328,7 @@ $(document).ready(function () {
                         })
                     })
                 });
-
-
             });
-
-//         });
-//         //exampleModalLong2 Close button
-//         $(document).on("click", "#modal2", function (event) {
-//             $(".edit-heading").remove();
-//         });
-//         //exampleModalLong3 Close button
-//         $(document).on("click", "#modal3", function (event) {
-//             $(".order").remove();
-//         });
-
-        // var time = [];
-
 
             //delete item button
             $(document).on("click", ".delete-item", function (event) {
@@ -392,26 +341,18 @@ $(document).ready(function () {
                     location.reload();
                 });
             });
+
             //exampleModalLong2 Close button
             $(document).on("click", "#modal2", function (event) {
                 $(".edit-heading").remove();
             });
+
             //exampleModalLong3 Close button
             $(document).on("click", "#modal3", function (event) {
                 $(".order").remove();
             });
-
-            // var time = [];
-
-
-
         })
-
     })
-
-  
-
-
 
     function updateTime() {
         $.ajax("/api/moment", {
