@@ -100,8 +100,8 @@ $(document).ready(function () {
                         dataType: 'json',
                         contentType: "application/json"
                     }).then(function (result) {
-                        // location.reload();
-                        console.log(result);
+                        location.reload();
+                        // console.log(result);
                         // id = result.itemize_id;
                         // var len = data.menu.length;
                         // for (var i = 0; i < len; i++) {
@@ -126,8 +126,8 @@ $(document).ready(function () {
                         var subtotalArray = [];
                         var taxArray = [];
                         var totalArray = [];
-                        var order_div = $(".modal-body");
-                        // order_div.empty();
+                        
+                        var order_div = $(".body3");
                         for (var i = 0; i < result.orders.length; i++) {
                             // console.log("Ticket Number: " + result.orders[i].id);
                             var ticketNumber = result.orders[i].id;
@@ -350,6 +350,7 @@ $(document).ready(function () {
             //exampleModalLong3 Close button
             $(document).on("click", "#modal3", function (event) {
                 $(".order").remove();
+                $(".body3").empty();
             });
         })
     })
