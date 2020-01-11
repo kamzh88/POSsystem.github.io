@@ -60,8 +60,8 @@ $(function () {
                         // console.log("Item Name: " + itemName);
                         // console.log("Item Price: " + itemPrice);
                         var new_elem = `
-                    <div>Item Name:<span class="item-name" data-id=${id} > ${itemName}</span></div>
-                    <div class="item-price">Price: $${itemPrice}</div><br>`;
+                            <div><span class="item-name" data-id=${id}>${itemName}</span><span class="boldCSS">$${itemPrice}</span></div>
+                            </div>`;
                         orderDiv.append(new_elem);
                         priceArray.push(parseFloat(itemPrice));
                         subTotal = priceArray.reduce((a, b) => a + b, 0)
@@ -174,11 +174,11 @@ $(function () {
                     </div>
                     `
 
-//                     order_div.append(order_elem);
-//                 }
+                        //                     order_div.append(order_elem);
+                        //                 }
 
-//             })
-//         });
+                        //             })
+                        //         });
 
                         order_div.append(order_elem);
                     }
@@ -195,9 +195,17 @@ $(function () {
                 // console.log("taxes " + tax);
                 // console.log("Total: " + total);
                 var total_elem = `
-            <p>Subtotal: $${subTotal.toFixed(2)}<br>
-            Taxes: $${tax}<br>
-            Total: $${total}</p> `;
+                <div class="totalGrid">
+                    <div class="subtotalCSS">
+                        Subtotal: <span class="boldCSS">$${subTotal.toFixed(2)}</span>
+                    </div>
+                    <div class="taxCSS">
+                        Tax: <span class="boldCSS">$${tax}</span>
+                    </div>
+                    <div class ="totalCSS">
+                        Total: <span class="boldCSS">$${total}</span>
+                    </div>
+                </div>`;
                 totalDiv.append(total_elem);
             }
 
@@ -338,15 +346,15 @@ $(function () {
         });
         //exampleModalLong2 Close button
         $(document).on("click", "#modal2", function (event) {
-            $(".edit-heading").empty();
+            $(".edit-heading").remove();
         });
         //exampleModalLong3 Close button
         $(document).on("click", "#modal3", function (event) {
-            $(".order").empty();
+            $(".order").remove();
         });
 
         // var time = [];
-  
+
 
     })
 
