@@ -65,8 +65,6 @@ $(document).ready(function () {
 			var timeData = time.time;
 			var timeDiv = $('.time');
 			timeDiv.text(dateData + "   " + timeData);
-			// time.push(timeData);
-			// console.log(time.date);
 		})
 	}
 	
