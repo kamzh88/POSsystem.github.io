@@ -100,8 +100,8 @@ $(document).ready(function () {
                         dataType: 'json',
                         contentType: "application/json"
                     }).then(function (result) {
-                        // location.reload();
-                        console.log(result);
+                        location.reload();
+                        // console.log(result);
                         // id = result.itemize_id;
                         // var len = data.menu.length;
                         // for (var i = 0; i < len; i++) {
