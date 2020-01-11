@@ -1,3 +1,4 @@
+import { updateTime } from './utils.js';
 $(document).ready(function () {
     $(function () {
         $.ajax("/api/menu", {
@@ -181,7 +182,6 @@ $(document).ready(function () {
                     })
                 });
 
-
                 function totals(subTotal) {
                     var totalDiv = $("#total");
                     totalDiv.empty();
@@ -354,19 +354,6 @@ $(document).ready(function () {
             });
         })
     })
-
-    function updateTime() {
-        $.ajax("/api/moment", {
-            type: "GET"
-        }).then(function (time, date) {
-            var dateData = time.date;
-            var timeData = time.time;
-            var timeDiv = $('.time');
-            timeDiv.text(dateData + "   " + timeData);
-            // time.push(timeData);
-            // console.log(time.date);
-        })
-    }
 
     setInterval(updateTime, 1000);
     updateTime();
