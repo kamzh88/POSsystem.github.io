@@ -20,7 +20,7 @@ router.get("/api/orders", function (req, res) {
 
 router.get("/api/employee", function (req, res) {
     menu.selectEmployee(function (data) {
-        // console.log(data);
+        console.log(req.params.employee_positon);
         res.json({ employee: data });
     });
 });

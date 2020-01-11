@@ -9,6 +9,7 @@ var menu = {
     selectEmployee: function(cb) {
         orm.selectAll("employees", function (res) {
             cb(res);
+            // console.log(res);
         })
     },
     selectOrders: function (cb) {
@@ -36,7 +37,7 @@ var menu = {
     insertEmployee: function (cols, vals, cb) {
         orm.insertEmployee("employees", cols, vals, function (res) {
             cb(res);
-            // console.log(res);
+            
         })
     },
     insertOrder: function (cols, vals, cb) {
