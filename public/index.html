@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
 
-    <link rel="stylesheet" href="assets/css/reset.css">
+    <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,13 +21,16 @@
             <span>1st Class POS Solutions</span>
             <div class="time"></div>
         </section>
+
         <section class="admin">
             <div class="buttons">
                 <button id="create-employee" class="btn btn-primary" data-toggle='modal'
                     data-target='#exampleModalLong1' value="create"><i class="fas fa-plus"></i><span>New
                         Employee</span></button>
-                <button id="edit-employee" class="btn btn-primary" data-toggle='modal' data-target='#exampleModalLong2'
-                    value="edit"><i class="fas fa-plus"></i><span>Edit Employee</span></button>
+                <button id="view-employee" class="btn btn-primary" data-toggle='modal' data-target='#exampleModalLong2'
+                    value="edit"><i class="fas fa-plus"></i><span>View Employee</span></button>
+                <button id="order-list" class="btn" data-toggle='modal' data-target="#exampleModalLong3">View
+                    Orders</button>
             </div>
         </section>
 
@@ -53,16 +56,40 @@
                     value="submit"><span>OK</span></button></a>
             </div>
         </section>
-
     </main>
+    
+    <!-- View All Orders Modal -->
+    <div class="modal fade" id="exampleModalLong3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Orders</h5>
+                    <button id="modal3" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="body3">
 
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modal3">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete new employees modal -->
     <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle"></h5>
-                    <button id="modal2" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="exampleModalLongTitle">All Employees</h5>
+                    <button id="modal2" type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        modal="show">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -75,6 +102,7 @@
         </div>
     </div>
 
+    <!-- Add New Employees Modal -->
     <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -123,7 +151,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-        
     <script type="module" src="assets/js/indexView.js"></script>
 </body>
 

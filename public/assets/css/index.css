@@ -59,3 +59,7 @@ body {
 .fa-arrow-alt-circle-left {
 	font-size: 21px;
 }
+
+body.modal-open div.modal-backdrop { 
+    z-index: 0; 
+}

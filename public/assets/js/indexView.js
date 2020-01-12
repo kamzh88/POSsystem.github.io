@@ -1,12 +1,14 @@
-import {updateTime} from './utils.js';
+import {updateTime, orderButton} from './utils.js';
 
 $(document).ready(function () {
 	
 	var inputArray = [];
+
 	$(function () {
 		$.ajax("/api/employee", {
 			type: "GET"
 		}).then(function (data) {
+			
 			//Create new employee button
 			$("#create-employee").on("click", function () {
 				$(".create-form").on("submit", function (event) {
@@ -37,6 +39,7 @@ $(document).ready(function () {
 					})
 				})
 			})
+
 			//keypad number bottons
 			$(".number").on("click", function (event) {
 				var value = $(this).data("value");
@@ -44,23 +47,24 @@ $(document).ready(function () {
 				inputArray.push(value);
 				employeeID.append(value);
 			})
+
 			//keypad OK button
 			$("#button-submit").on("click", function (event) {
-				userInput = inputArray.join('')
-				len = data.employee.length;
+				var userInput = inputArray.join('')
+				var len = data.employee.length;
 				for (var i = 0; i < len; i++) {
 					var dataEmployeeID = data.employee[i].employee_id;
 					var employeePosition = data.employee[i].employee_position;				
 					if (userInput == dataEmployeeID) {
 						if (employeePosition.indexOf("Orders")>-1) {
-							window.location.assign(href = "/admin")
+							window.location.assign("/admin")
 						};
 					};
 				};
 			})
 		})
 	})
-	
+	orderButton();
 	setInterval(updateTime, 1000);
 	updateTime();
 
