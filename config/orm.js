@@ -31,13 +31,13 @@ function objToSql(ob) {
 var orm = {
     selectAll: function (tableInput, cb) {
         var queryString = "SELECT * FROM " + tableInput + ";";
-        console.log(queryString);
+        // console.log(queryString);
         connection.query(queryString, function (err, result) {
             if (err) {
                 throw err;
             }
             cb(result);
-            console.log(result);
+            // console.log(result);
         });
     },
     selectCategory: function (tableInput, condition, cb) {
@@ -88,7 +88,7 @@ var orm = {
         vals4 = JSON.stringify(vals[4]);
         vals5 = JSON.stringify(vals[5]);
         var queryString = `INSERT INTO ${table} (${cols.toString()}) VALUES (${vals0},${vals[1]},${vals[2]},${vals[3]},${vals4},${vals5})`;
-        console.log(queryString);
+        // console.log(queryString);
         // console.log(vals0)
         connection.query(queryString, function (err, result) {
             if (err) {
@@ -105,7 +105,7 @@ var orm = {
         vals2 = JSON.stringify(vals[2]);
         // console.log(vals0);
         var queryString = `INSERT INTO ${table} (${cols.toString()}) VALUES (${vals0},${vals1},${vals2},${vals[3]})`;
-        console.log(queryString);
+        // console.log(queryString);
         connection.query(queryString, function (err, result) {
             if (err) {
                 throw err;
