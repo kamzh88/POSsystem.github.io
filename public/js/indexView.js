@@ -4,7 +4,7 @@ $(document).ready(function () {
 	$.ajax("/api/employee", {
 		type: "GET"
 	}).then(function (data) {
-		console.log(data)
+		// console.log(data)
 
 		$(document).on("click", "#view-employee", function (event) {
 			// console.log(data);
@@ -14,8 +14,8 @@ $(document).ready(function () {
 				var dataEmployeeID = data.employee[i].employee_id;
 				var employeePosition = data.employee[i].employee_position;
 				var id = data.employee[i].id
-				console.log(employeePosition)
-				console.log(userInput);
+				// console.log(employeePosition)
+				// console.log(userInput);
 				if (userInput == dataEmployeeID) {
 					if (employeePosition.indexOf("Manager") > -1) {
 						$('#exampleModalLong2').modal("show");
@@ -66,22 +66,25 @@ $(document).ready(function () {
 
 			var userInput = inputArray.join('');
 			var len = data.employee.length;
-			for (var i = 0; i < len; i++) {
-				var dataEmployeeID = data.employee[i].employee_id;
-				var employeePosition = data.employee[i].employee_position;
-				var id = data.employee[i].id
-				console.log(employeePosition)
-				if (userInput === "") {
-					console.log("Input a password please!")
-				} else if (userInput == dataEmployeeID) {
-					if (employeePosition.indexOf("Manager") > -1) {
-						window.location.assign("/admin");
+			if (userInput === "") {
+				// console.log("Input a password please!")
+				alert("Input a password please!")
+			} else {
+				for (var i = 0; i < len; i++) {
+					var dataEmployeeID = data.employee[i].employee_id;
+					var employeePosition = data.employee[i].employee_position;
+					var id = data.employee[i].id
+					// console.log(employeePosition)
+					if (userInput == dataEmployeeID) {
+						if (employeePosition.indexOf("Manager") > -1) {
+							window.location.assign("/admin");
+						}
+						if (employeePosition.indexOf("Cashier") > -1) {
+							window.location.assign("/cashier");
+						} else {
+							console.log("wrong password")
+						}
 					}
-					if (employeePosition.indexOf("Cashier") > -1) {
-						window.location.assign("/cashier");
-					}
-				} else {
-					console.log("wrong password")
 				}
 			}
 		})
@@ -94,8 +97,8 @@ $(document).ready(function () {
 				var dataEmployeeID = data.employee[i].employee_id;
 				var employeePosition = data.employee[i].employee_position;
 				var id = data.employee[i].id
-				console.log(employeePosition)
-				console.log(userInput);
+				// console.log(employeePosition)
+				// console.log(userInput);
 				if (userInput == dataEmployeeID) {
 					if (employeePosition.indexOf("Manager") > -1) {
 						$('#exampleModalLong1').modal("show");
