@@ -71,13 +71,17 @@ $(document).ready(function () {
 				var employeePosition = data.employee[i].employee_position;
 				var id = data.employee[i].id
 				console.log(employeePosition)
-				if (userInput == dataEmployeeID) {
+				if (userInput === "") {
+					console.log("Input a password please!")
+				} else if (userInput == dataEmployeeID) {
 					if (employeePosition.indexOf("Manager") > -1) {
 						window.location.assign("/admin");
 					}
 					if (employeePosition.indexOf("Cashier") > -1) {
 						window.location.assign("/cashier");
 					}
+				} else {
+					console.log("wrong password")
 				}
 			}
 		})
@@ -121,8 +125,8 @@ $(document).ready(function () {
 	})
 
 	$(document).on("click", "#button-clear", function (event) {
-        $(".employeeID").empty();
-    });
+		$(".employeeID").empty();
+	});
 
 	orderButton();
 	setInterval(updateTime, 1000);
