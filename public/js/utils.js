@@ -1,3 +1,5 @@
+export { updateTime, orderButton };
+
 function updateTime() {
     $.ajax("/api/moment", {
         type: "GET"
@@ -74,29 +76,3 @@ function orderButton() {
         })
     })
 }
-var password = [];
-//keypad OK button
-function menuLoginButton(inputArray) {
-    $("#button-submit").on("click", function (event) {
-        $.ajax("/api/employee", {
-            type: "GET"
-        }).then(function (data) {
-            var userInput = inputArray.join('')
-            var len = data.employee.length;
-            for (var i = 0; i < len; i++) {
-                var dataEmployeeID = data.employee[i].employee_id;
-                var employeePosition = data.employee[i].employee_position;
-                password.push(employeePosition);
-                if (userInput == dataEmployeeID) {
-                    if (employeePosition.indexOf("Orders") > -1) {
-                        window.location.assign("/admin"); 
-                    }
-                };
-            };
-        })
-    })
-    // $('#menu-changes').show();
-}
-console.log(password);
-
-export { updateTime, orderButton, menuLoginButton};

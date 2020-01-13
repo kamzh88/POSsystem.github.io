@@ -1,4 +1,5 @@
 var connection = require("./connection.js");
+
 function printQuestionMarks(num) {
     var arr = [];
 
@@ -8,6 +9,7 @@ function printQuestionMarks(num) {
 
     return arr.toString();
 }
+
 function objToSql(ob) {
     var arr = [];
     // loop through the keys and push the key/value as a string int arr
@@ -46,6 +48,7 @@ var orm = {
             if (err) {
                 throw err;
             }
+            // console.log(result);
             cb(result);
         });
     },
@@ -72,8 +75,6 @@ var orm = {
     },
     updateOne: function (table, objColVals, condition, cb) {
         var queryString = `UPDATE ${table} SET ${objToSql(objColVals)} WHERE ${condition}`;
-        // console.log(objToSql(objColVals));
-        // console.log(objColVals);
         // console.log(queryString);
         connection.query(queryString, function(err, result) {
             if(err){

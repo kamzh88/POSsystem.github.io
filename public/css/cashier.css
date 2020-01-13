@@ -204,6 +204,9 @@ h1 {
 	font-weight: bold;
 	float: right;
 }
-/* #menu-changes {
+#menu-changes {
 	display: none;
-} */
+}
+#create-items {
+	display: none;
+}

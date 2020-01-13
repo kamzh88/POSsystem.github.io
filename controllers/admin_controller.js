@@ -5,12 +5,30 @@ var router = express.Router();
 var menu = require("../models/adminModel.js");
 
 router.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+    res.render('index');
 });
 
 router.get("/admin", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/admin.html"));
+    // console.log(req);
+    // res.sendFile(path.join(__dirname, "../views/admin.handlebars"));
+    res.render('admin', { title: 'Menu Page' });
 });
+
+router.get("/cashier", function (req, res) {
+    // console.log(req);
+    // res.sendFile(path.join(__dirname, "../views/admin.handlebars"));
+    res.render('cashier', { title: 'Menu Page' });
+});
+
+router.get("/admin/cashier", function (req, res) {
+    var condition = req;
+    console.log(condition);
+
+    // res.json({cashierID: condition});
+    // res.sendFile(path.join(__dirname, "../views/admin.handlebars"));
+    // res.render('admin');
+    // window.location.assign('admin', {title: 'Menu Page', resultID: id});
+})
 
 router.get("/api/orders", function (req, res) {
     menu.selectOrders(function (data) {
@@ -20,7 +38,7 @@ router.get("/api/orders", function (req, res) {
 
 router.get("/api/employee", function (req, res) {
     menu.selectEmployee(function (data) {
-        console.log(req.params.employee_positon);
+        // console.log(req.params.employee_positon);
         res.json({ employee: data });
     });
 });
@@ -52,6 +70,7 @@ router.get("/api/menu/:category", function (req, res) {
     });
 });
 
+
 router.delete("/api/menu/:id", function (req, res) {
     var condition = "id = " + req.params.id;
     // console.log(condition);
@@ -74,7 +93,6 @@ router.post("/api/menu", function (req, res) {
 
         }
     )
-
 })
 
 router.post("/api/employee", function (req, res) {
@@ -113,6 +131,26 @@ router.post("/api/orders", function (req, res) {
     )
 })
 
+router.get("/api/employee/:id", function (req, res) {
+    var condition = "id = " + req.params.id;
+    // console.log(condition);
+    menu.selectEmployeeID(condition, function (data) {
+        // console.log(req.params.employee_positon);
+        // console.log(data);    
+        // res.sendFile(__dirname + '../views/admin.handlebars');
+        // if (error) {
+        //     return res.render('error');
+        // }
+        res.json({ employee: data });
+        // res.sendFile(path.join(__dirname + "../views/admin.handlebars"));
+       
+        
+
+
+    });
+
+})
+
 router.put("/api/menu/:id", function (req, res) {
     var condition = "id = " + req.params.id;
     // console.log(condition);
@@ -134,8 +172,7 @@ router.put("/api/menu/:id", function (req, res) {
                 price: req.body.price
             });
         }
-    }
-    )
+    })
 })
 
 module.exports = router;

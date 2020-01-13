@@ -6,10 +6,15 @@ var menu = {
             cb(res);
         });
     },
-    selectEmployee: function(cb) {
+    selectEmployee: function (cb) {
         orm.selectAll("employees", function (res) {
             cb(res);
             // console.log(res);
+        })
+    },
+    selectEmployeeID: function (condition, cb) {
+        orm.selectCategory("employees", condition, function(res) {
+            cb(res);
         })
     },
     selectOrders: function (cb) {
@@ -37,7 +42,7 @@ var menu = {
     insertEmployee: function (cols, vals, cb) {
         orm.insertEmployee("employees", cols, vals, function (res) {
             cb(res);
-            
+
         })
     },
     insertOrder: function (cols, vals, cb) {
@@ -54,21 +59,11 @@ var menu = {
         })
     },
     date: function (cb) {
-        
-        //UPDATING TIME IN CONSOLE
-        // function updateTime(){
-        //     var now = moment();
-        //     var time = now.format('hh:mm:ssA');
-        //     // console.log(time);
-        //     cb(time);
-        // }
-        
-        // updateTime();
+
         var date = moment().format("MM/DD/YYYY");
         var time = moment().format('hh:mm:ssA');
         cb(time, date);
-        // console.log(time);
-        
+
     },
 };
 module.exports = menu;

@@ -63,3 +63,7 @@ body {
 body.modal-open div.modal-backdrop { 
     z-index: 0; 
 }
+
+.modal-backdrop {
+    display: none;
+}

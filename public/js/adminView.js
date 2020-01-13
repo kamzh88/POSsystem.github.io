@@ -1,4 +1,4 @@
-import { updateTime, orderButton, menuLoginButton } from './utils.js';
+import { orderButton, updateTime } from './utils.js';
 
 $(document).ready(function () {
     var tax;
@@ -18,7 +18,7 @@ $(document).ready(function () {
             var priceArray = [];
             var categoryElem = $('#category-div');
             // console.log(data);
-        
+
             //append category onto the page
             var category = ["Chicken", "Beef", "Appetizers", "Vegetables", "Seafood"];
             var len = category.length;
@@ -38,8 +38,8 @@ $(document).ready(function () {
                         var itemName = data.menu[i].item_name
                         var new_elem = `<button class='itembtn' data-id=${data.menu[i].id} data-item=${itemName}>${itemName}</button>`
                         itemsDiv.append(new_elem);
-                    }
-                };
+                    };
+                }
             })
 
             //itemID is the ID of the on click function
@@ -59,7 +59,7 @@ $(document).ready(function () {
                         subTotal = priceArray.reduce((a, b) => a + b, 0)
                         totals(subTotal);
                         itemID.push(id);
-                    }
+                    };
                 }
             })
 
@@ -90,19 +90,6 @@ $(document).ready(function () {
                 }).then(function (result) {
                     location.reload();
                     // console.log(result);
-                    // id = result.itemize_id;
-                    // var len = data.menu.length;
-                    // for (var i = 0; i < len; i++) {
-                    //     for (var j = 0; j < len; j++) {
-                    //         if (id[j] === data.menu[i].id) {
-                    //             var itemName = data.menu[i].item_name;
-                    //             var categoryName = data.menu[i].category;
-                    //             var itemPrice = data.menu[i].price;
-                    //             // console.log(data.menu[i].id);
-                    //             // console.log(data.menu[i].item_name);
-                    //         }
-                    //     }
-                    // }
                 })
             })
 
@@ -167,7 +154,7 @@ $(document).ready(function () {
                         dataType: 'json',
                         contentType: 'application/json'
                     }).then(function (data) {
-                        console.log("menu item changed", id);
+                        // console.log("menu item changed", id);
                         location.reload();
                         // console.log(data);
                         $(event.target).closest(".edit-heading").html(`
@@ -280,7 +267,7 @@ $(document).ready(function () {
     });
 
     orderButton();
-    menuLoginButton();
     setInterval(updateTime, 1000);
     updateTime();
 })
+
