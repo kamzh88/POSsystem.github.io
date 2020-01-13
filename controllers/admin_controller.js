@@ -20,15 +20,15 @@ router.get("/cashier", function (req, res) {
     res.render('cashier', { title: 'Menu Page' });
 });
 
-router.get("/admin/cashier", function (req, res) {
-    var condition = req;
-    console.log(condition);
+// router.get("/admin/cashier", function (req, res) {
+//     var condition = req;
+//     console.log(condition);
 
-    // res.json({cashierID: condition});
-    // res.sendFile(path.join(__dirname, "../views/admin.handlebars"));
-    // res.render('admin');
-    // window.location.assign('admin', {title: 'Menu Page', resultID: id});
-})
+//     // res.json({cashierID: condition});
+//     // res.sendFile(path.join(__dirname, "../views/admin.handlebars"));
+//     // res.render('admin');
+//     // window.location.assign('admin', {title: 'Menu Page', resultID: id});
+// })
 
 router.get("/api/orders", function (req, res) {
     menu.selectOrders(function (data) {
@@ -70,6 +70,18 @@ router.get("/api/menu/:category", function (req, res) {
     });
 });
 
+
+router.delete("/api/employee/:id", function (req, res) {
+    var condition = "id = " + req.params.id;
+    console.log(condition);
+    menu.delete(condition, function (result) {
+        if (result.affectedRows == 0) {
+            return res.status(404).end();
+        } else {
+            res.status(200).end();
+        };
+    })
+})
 
 router.delete("/api/menu/:id", function (req, res) {
     var condition = "id = " + req.params.id;
@@ -131,25 +143,25 @@ router.post("/api/orders", function (req, res) {
     )
 })
 
-router.get("/api/employee/:id", function (req, res) {
-    var condition = "id = " + req.params.id;
-    // console.log(condition);
-    menu.selectEmployeeID(condition, function (data) {
-        // console.log(req.params.employee_positon);
-        // console.log(data);    
-        // res.sendFile(__dirname + '../views/admin.handlebars');
-        // if (error) {
-        //     return res.render('error');
-        // }
-        res.json({ employee: data });
-        // res.sendFile(path.join(__dirname + "../views/admin.handlebars"));
+// router.get("/api/employee/:id", function (req, res) {
+//     var condition = "id = " + req.params.id;
+//     // console.log(condition);
+//     menu.selectEmployeeID(condition, function (data) {
+//         // console.log(req.params.employee_positon);
+//         // console.log(data);    
+//         // res.sendFile(__dirname + '../views/admin.handlebars');
+//         // if (error) {
+//         //     return res.render('error');
+//         // }
+//         res.json({ employee: data });
+//         // res.sendFile(path.join(__dirname + "../views/admin.handlebars"));
        
         
 
 
-    });
+//     });
 
-})
+// })
 
 router.put("/api/menu/:id", function (req, res) {
     var condition = "id = " + req.params.id;

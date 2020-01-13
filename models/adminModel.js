@@ -33,6 +33,12 @@ var menu = {
             cb(res);
         })
     },
+    delete: function (condition, cb) {
+        // console.log(conditon);
+        orm.delete("employees", condition, function (res) {
+            cb(res);
+        })
+    },
     insertItem: function (cols, vals, cb) {
         orm.insertOne("menu", cols, vals, function (res) {
             cb(res);

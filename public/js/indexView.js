@@ -4,12 +4,35 @@ $(document).ready(function () {
 	$.ajax("/api/employee", {
 		type: "GET"
 	}).then(function (data) {
-		console.log(data);
+console.log(data)
 
-		//Create new employee button
-		// if (userInput === "") {
-		// $('#exampleModalLong1').modal(hide);
-
+		$(document).on("click", "#view-employee", function (event) {
+			// console.log(data);
+			var userInput = inputArray.join('');
+			var len = data.employee.length;
+			for (var i = 0; i < len; i++) {
+				var dataEmployeeID = data.employee[i].employee_id;
+				var employeePosition = data.employee[i].employee_position;
+				var id = data.employee[i].id
+				console.log(employeePosition)
+				console.log(userInput);
+				if (userInput == dataEmployeeID) {
+					if (employeePosition.indexOf("Manager") > -1) {
+						$('#exampleModalLong2').modal("show");
+						for (var i = 0; i < data.employee.length; i++) {
+							var dataID = data.employee[i].id;
+							var employeePosition = data.employee[i].employee_position;
+							var employeeFirstName = data.employee[i].employee_firstName;
+							var employeeLastName = data.employee[i].employee_lastName;
+							// console.log(data.employee[i].employee_firstName);
+							var allEmployee = $(".all-employee");
+							var new_elem = `${dataID}. ${employeeFirstName} ${employeeLastName} (${employeePosition}) <button class='delete-employee' data-id='${dataID}'>DELETE</button><br>`;
+							allEmployee.append(new_elem);
+						}
+					}
+				}
+			}
+		})
 
 		$(".create-form").on("submit", function (event) {
 			event.preventDefault();
@@ -39,10 +62,6 @@ $(document).ready(function () {
 			})
 
 		})
-		// })
-
-		// }
-
 
 		$(document).on("click", "#button-submit", function (event) {
 
@@ -64,6 +83,7 @@ $(document).ready(function () {
 			}
 		})
 		$(document).on("click", "#create-employee", function (event) {
+			// $('#exampleModalLong1').modal("show");
 			var userInput = inputArray.join('');
 			var len = data.employee.length;
 			for (var i = 0; i < len; i++) {
@@ -89,8 +109,16 @@ $(document).ready(function () {
 		employeeID.append(value);
 	})
 
+	$(document).on("click", ".delete-employee", function (event) {
+		var id = $(this).data("id");
+		
+		$.ajax("/api/employee/" + id, {
+			type: "DELETE"
+		}).then(function () {
+			location.reload();
+		})
+	})
 	orderButton();
 	setInterval(updateTime, 1000);
 	updateTime();
-
 })

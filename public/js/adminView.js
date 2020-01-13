@@ -217,7 +217,7 @@ $(document).ready(function () {
     }
 
     //add items button
-    $(document).on("click", "#create-items", function (event) {
+    // $(document).on("click", "#create-items", function (event) {
         // console.log(data.menu);
         $(".create-form").on("submit", function (event) {
             event.preventDefault();
@@ -241,7 +241,7 @@ $(document).ready(function () {
                 // console.log(result);
             })
         })
-    });
+    // });
 
     //delete item button
     $(document).on("click", ".delete-item", function (event) {
