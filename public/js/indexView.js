@@ -119,7 +119,11 @@ $(document).ready(function () {
 			location.reload();
 		})
 	})
-	
+
+	$(document).on("click", "#button-clear", function (event) {
+        $(".employeeID").empty();
+    });
+
 	orderButton();
 	setInterval(updateTime, 1000);
 	updateTime();
