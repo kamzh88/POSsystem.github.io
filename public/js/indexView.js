@@ -4,7 +4,7 @@ $(document).ready(function () {
 	$.ajax("/api/employee", {
 		type: "GET"
 	}).then(function (data) {
-console.log(data)
+		console.log(data)
 
 		$(document).on("click", "#view-employee", function (event) {
 			// console.log(data);
@@ -60,7 +60,6 @@ console.log(data)
 			}).then(function (result) {
 				location.reload();
 			})
-
 		})
 
 		$(document).on("click", "#button-submit", function (event) {
@@ -82,6 +81,7 @@ console.log(data)
 				}
 			}
 		})
+
 		$(document).on("click", "#create-employee", function (event) {
 			// $('#exampleModalLong1').modal("show");
 			var userInput = inputArray.join('');
@@ -101,6 +101,7 @@ console.log(data)
 
 		})
 	})
+
 	// keypad number buttons
 	$(".number").on("click", function (event) {
 		var value = $(this).data("value");
@@ -111,13 +112,14 @@ console.log(data)
 
 	$(document).on("click", ".delete-employee", function (event) {
 		var id = $(this).data("id");
-		
+
 		$.ajax("/api/employee/" + id, {
 			type: "DELETE"
 		}).then(function () {
 			location.reload();
 		})
 	})
+	
 	orderButton();
 	setInterval(updateTime, 1000);
 	updateTime();

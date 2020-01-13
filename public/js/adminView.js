@@ -216,33 +216,32 @@ $(document).ready(function () {
         totalDiv.append(total_elem);
     }
 
-    //add items button
-    // $(document).on("click", "#create-items", function (event) {
-        // console.log(data.menu);
-        $(".create-form").on("submit", function (event) {
-            event.preventDefault();
-            var itemName = $("#item-name").val().trim();
-            var categoryName = $("#category-name").val().trim();
-            var itemPrice = $("#item-price").val().trim();
-            var newItem = {
-                item_name: itemName,
-                category: categoryName,
-                selected: 0,
-                price: itemPrice
-            };
-            // console.log(newItem);
-            $.ajax("/api/menu", {
-                type: "POST",
-                data: JSON.stringify(newItem),
-                dataType: 'json',
-                contentType: "application/json"
-            }).then(function (result) {
-                location.reload();
-                // console.log(result);
-            })
+    //create new items button
+    $(".create-form").on("submit", function (event) {
+        event.preventDefault();
+        var itemName = $("#item-name").val().trim();
+        var categoryName = $("#category-name").val().trim();
+        var itemPrice = $("#item-price").val().trim();
+        var newItem = {
+            item_name: itemName,
+            category: categoryName,
+            selected: 0,
+            price: itemPrice
+        };
+        // console.log(newItem);
+        $.ajax("/api/menu", {
+            type: "POST",
+            data: JSON.stringify(newItem),
+            dataType: 'json',
+            contentType: "application/json"
+        }).then(function (result) {
+            location.reload();
+            // console.log(result);
         })
-    // });
-
+    })
+    $(document).on("click", "#logOut", function (event) {
+        window.location.assign("/");
+    })
     //delete item button
     $(document).on("click", ".delete-item", function (event) {
         var id = $(this).data("id");
