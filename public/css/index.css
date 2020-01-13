@@ -61,6 +61,12 @@ body {
 	font-size: 21px;
 }
 
+.time {
+	
+	top: 1rem;
+	right: 2rem;
+	font-weight: bolder;
+}
 /* body.modal-open div.modal-backdrop { 
     z-index: 0; 
 }

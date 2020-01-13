@@ -26,6 +26,9 @@ body {
 .categoryGrid {
 	grid-area: category;
 }
+/* #category-div{
+	border-right: 1px solid black;
+} */
 .itemsGrid {
 	grid-area: items;
 }
