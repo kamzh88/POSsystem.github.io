@@ -145,13 +145,13 @@ function orderButton() {
                     <div <div id="total">
                     <div class="totalGrid">
                         <div class="subtotalCSS">
-                            Subtotal: <span class="boldCSS">$15.00</span>
+                            Subtotal: <span class="boldCSS"></span>
                         </div>
                         <div class="taxCSS">
-                            Tax: <span class="boldCSS">$0.99</span>
+                            Tax: <span class="boldCSS"></span>
                         </div>
                         <div class="totalCSS">
-                            Total: <span class="boldCSS">$15.99</span>
+                            Total: <span class="boldCSS"></span>
                         </div>
                     </div></div>
                     <div class="orderButtons">
