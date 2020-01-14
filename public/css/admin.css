@@ -26,6 +26,9 @@ body {
 .categoryGrid {
 	grid-area: category;
 }
+/* #category-div{
+	border-right: 1px solid black;
+} */
 .itemsGrid {
 	grid-area: items;
 }
@@ -156,7 +159,7 @@ h1 {
 /* Modal Body */
 .modal-body > .edit-heading:nth-of-type(odd) {
 	background-color: lightgray;
-	padding: 0.5rem;
+	/* padding: 0rem; */
 }
 
 .edit-heading > .delete-item {

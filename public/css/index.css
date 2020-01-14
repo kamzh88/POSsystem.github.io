@@ -39,15 +39,16 @@ body {
 }
 
 .employeeID {
-	border: 1px solid deepskyblue;
+	border: 2px solid deepskyblue;
 	border-radius: 5px;
 	margin: 1rem 0;
 	padding: 1rem;
 	width: 100%;
 	height: auto;
+	background-color: white;
 }
 
-.btn {
+.keypadNumber {
 	width: 6rem;
 	height: 6rem;
 }
@@ -59,3 +60,17 @@ body {
 .fa-arrow-alt-circle-left {
 	font-size: 21px;
 }
+
+.time {
+	
+	top: 1rem;
+	right: 2rem;
+	font-weight: bolder;
+}
+/* body.modal-open div.modal-backdrop { 
+    z-index: 0; 
+}
+
+.modal-backdrop {
+    display: none;
+} */
