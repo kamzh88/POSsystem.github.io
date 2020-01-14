@@ -82,15 +82,21 @@ $(document).ready(function () {
 						if (employeePosition.indexOf("Cashier") > -1) {
 							window.location.assign("/cashier");
 						} else {
-							console.log("wrong password")
+							console.log("Wrong password")
 						}
+					
+					} else if (userInput = !dataEmployeeID) {
+						alert("Wrong password")
+						$(".employeeID").empty();
+
 					}
+
 				}
 			}
 		})
 
 		$(document).on("click", "#create-employee", function (event) {
-			$('#exampleModalLong1').modal("show");
+			// $('#exampleModalLong1').modal("show");
 			var userInput = inputArray.join('');
 			var len = data.employee.length;
 			for (var i = 0; i < len; i++) {
