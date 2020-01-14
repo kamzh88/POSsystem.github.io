@@ -16,7 +16,7 @@ $(document).ready(function () {
                 var category = ["Chicken", "Beef", "Appetizers", "Vegetables", "Seafood"];
                 var len = category.length;
                 for (var i = 0; i < len; i++) {
-                    var new_elem = `<button class='categorybtn' data-id=${data.menu} data-category=${category[i]}>${category[i]}</button>`
+                    var new_elem = `<button class='categorybtn' data-id=${data.menu} data-category=${category[i]}>${category[i]}</button>`;
                     categoryElem.append(new_elem);
                 }
 
@@ -33,8 +33,8 @@ $(document).ready(function () {
                     for (var i = 0; i < len; i++) {
                         if (categorybtn === data.menu[i].category) {
                             // console.log(data.menu[i].item_name);
-                            var itemName = data.menu[i].item_name
-                            var new_elem = `<button class='itembtn' data-id=${data.menu[i].id} data-item=${itemName}>${itemName}</button>`
+                            var itemName = data.menu[i].item_name;
+                            var new_elem = `<button class='itembtn' data-id=${data.menu[i].id} data-item=${itemName}>${itemName}</button>`;
                             itemsDiv.append(new_elem);
                         }
                     };
@@ -126,7 +126,6 @@ $(document).ready(function () {
                         var subtotalArray = [];
                         var taxArray = [];
                         var totalArray = [];
-                        
                         var order_div = $(".body3");
                         for (var i = 0; i < result.orders.length; i++) {
                             // console.log("Ticket Number: " + result.orders[i].id);
@@ -134,8 +133,11 @@ $(document).ready(function () {
                             var date = result.orders[i].date;
                             var time = result.orders[i].time;
                             var ticketNumber_elem = `
-                    <div class= "order"
-                    <h4 class="panel-title"><a data-toggle="collapse" href="#collapse${i}">${ticketNumber} ${date} ${time}</a></h4></div>`;
+                                <div class= "order"
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#collapse${i}">${ticketNumber} ${date} ${time}</a>
+                                    </h4>
+                                </div>`;
                             order_div.append(ticketNumber_elem);
                             var subtotal = result.orders[i].subtotal;
                             var tax = result.orders[i].taxes;
@@ -153,12 +155,11 @@ $(document).ready(function () {
                                         var item_price = data.menu[k].price;
                                         // console.log(result.orders[i].subtotal);
                                         var order_elem = `
-                                <div id="collapse${i}" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                <p>${item_name} $${item_price}</p>
-                                </div>
-                                </div>
-                             `
+                                            <div id="collapse${i}" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>${item_name} $${item_price}</p>
+                                                </div>
+                                            </div>`
                                         order_div.append(order_elem);
                                     }
                                 }
@@ -167,20 +168,17 @@ $(document).ready(function () {
                             // console.log("tax: " + taxArray);
                             // console.log("total: " + totalArray);
                             var order_elem = `
-                    <div id="collapse${i}" class="panel-collapse collapse">
-                    <div class="panel-body">
-                    <p>Subtotal: ${subtotalArray[i]}</p>
-                    <p>Taxes: ${taxArray[i]}</p>
-                    <p>Total: ${totalArray[i]}</p>
-                    </div>
-                    </div>
-                    `
+                                <div id="collapse${i}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>Subtotal: ${subtotalArray[i]}</p>
+                                        <p>Taxes: ${taxArray[i]}</p>
+                                        <p>Total: ${totalArray[i]}</p>
+                                    </div>
+                                </div>`
                             order_div.append(order_elem);
                         }
-
                     })
                 });
-
 
                 function totals(subTotal) {
                     var totalDiv = $("#total");
@@ -191,17 +189,17 @@ $(document).ready(function () {
                     // console.log("taxes " + tax);
                     // console.log("Total: " + total);
                     var total_elem = `
-                <div class="totalGrid">
-                    <div class="subtotalCSS">
-                        Subtotal: <span class="boldCSS">$${subTotal.toFixed(2)}</span>
-                    </div>
-                    <div class="taxCSS">
-                        Tax: <span class="boldCSS">$${tax}</span>
-                    </div>
-                    <div class ="totalCSS">
-                        Total: <span class="boldCSS">$${total}</span>
-                    </div>
-                </div>`;
+                        <div class="totalGrid">
+                            <div class="subtotalCSS">
+                                Subtotal: <span class="boldCSS">$${subTotal.toFixed(2)}</span>
+                            </div>
+                            <div class="taxCSS">
+                                Tax: <span class="boldCSS">$${tax}</span>
+                            </div>
+                            <div class ="totalCSS">
+                                Total: <span class="boldCSS">$${total}</span>
+                            </div>
+                        </div>`;
                     totalDiv.append(total_elem);
                 }
 
@@ -213,36 +211,41 @@ $(document).ready(function () {
                     var len = data.menu.length;
                     for (var i = 0; i < len; i++) {
                         var new_elem = `
-                <ul class="edit-heading"> ${items[i].id}. ${items[i].item_name}   $${items[i].price}
-                <button class='delete-item' data-id=${items[i].id}><i class="fas fa-window-close"></i></button>
-                <h4 class="panel-title"><a data-toggle="collapse" href="#collapse${i}">Edit</a></h4>
-                <div id="collapse${i}" class="panel-collapse collapse">
-                  <div class="panel-body">
-                  <form class="edit-form" data-id="${items[i].id}">
-                      <div class="form-group">
-                          <label for="new-name${i}">Item Name</label>
-                          <input type="text" class="item-name" >
-                      </div>
-                      <div class="form-group">
-                          <label for="exampleFormControlSelect1">Category</label>
-                          <select class="form-control" class="new-name${i}">
-                              <option>Chicken</option>
-                              <option>Beef</option>
-                              <option>Seafood</option>
-                              <option>Vegetables</option>
-                              <option>Appetizers</option>
-                          </select>
-                      </div>
-                      <div class="form-group">
-                          <label for="">Price</label>
-                          <input type="text" class="form-control" class="new-item-price${i}">
-                      </div>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-primary submit">Save</button>
-                  </form>
-                  </div>
-                </div></ul>`
-
+                            <ul class="edit-heading"> ${items[i].id}. ${items[i].item_name}   $${items[i].price}
+                            
+                                <a data-toggle="collapse" href="#collapse${i}"><i class="fas fa-edit"></i></a>
+                                
+                                <a class='delete-item' data-id=${items[i].id}>
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                                
+                                <div id="collapse${i}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <form class="edit-form" data-id="${items[i].id}">
+                                            <div class="form-group">
+                                                <label for="new-name${i}">Item Name</label>
+                                                <input type="text" class="item-name" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect1">Category</label>
+                                                <select class="form-control" class="new-name${i}">
+                                                    <option>Chicken</option>
+                                                    <option>Beef</option>
+                                                    <option>Seafood</option>
+                                                    <option>Vegetables</option>
+                                                    <option>Appetizers</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Price</label>
+                                                <input type="text" class="form-control" class="new-item-price${i}">
+                                            </div>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary submit">Save</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </ul>`;
                         menuElem.append(new_elem);
                     };
                     //Save button in edit button modal
@@ -269,35 +272,41 @@ $(document).ready(function () {
                             // location.reload();
                             console.log(data);
                             $(event.target).closest(".edit-heading").html(`
-                    <ul class="edit-heading"> ${id}. ${data.item_name}   $${data.price}
-                    <button class='delete-item' data-id=${id}>DELETE</button>
-                    <h4 class="panel-title"><a data-toggle="collapse" href="#collapse${i}">Edit</a></h4>
-                    <div id="collapse${i}" class="panel-collapse collapse">
-                      <div class="panel-body">
-                      <form class="edit-form" data-id="${id}">
-                          <div class="form-group">
-                              <label for="new-name${i}">Item Name</label>
-                              <input type="text" class="item-name" >
-                          </div>
-                          <div class="form-group">
-                              <label for="exampleFormControlSelect1">Category</label>
-                              <select class="form-control" class="new-name${i}">
-                                  <option>Chicken</option>
-                                  <option>Beef</option>
-                                  <option>Seafood</option>
-                                  <option>Vegetables</option>
-                                  <option>Appetizers</option>
-                              </select>
-                          </div>
-                          <div class="form-group">
-                              <label for="">Price</label>
-                              <input type="text" class="form-control" class="new-item-price${i}">
-                          </div>
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary submit">Save</button>
-                  </form>
-                      </div>
-                    </div></ul>`);
+                                <ul class="edit-heading"> ${id}. ${data.item_name}   $${data.price}
+                                    <a data-toggle="collapse" href="#collapse${i}"><i class="fas fa-edit"></i>
+                                    </a>
+                                
+                                    <a class='delete-item' data-id=${items[i].id}>
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                    <div id="collapse${i}" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <form class="edit-form" data-id="${id}">
+                                                <div class="form-group">
+                                                    <label for="new-name${i}">Item Name</label>
+                                                    <input type="text" class="item-name" >
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleFormControlSelect1">Category</label>
+                                                    <select class="form-control" class="new-name${i}">
+                                                        <option>Chicken</option>
+                                                        <option>Beef</option>
+                                                        <option>Seafood</option>
+                                                        <option>Vegetables</option>
+                                                        <option>Appetizers</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Price</label>
+                                                    <input type="text" class="form-control" class="new-item-price${i}">
+                                                </div>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary submit">Save</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </ul>`
+                            );
                         })
                     })
                 });

@@ -15,19 +15,17 @@
 </head>
 
 <body>
-	<div class="time"></div>
+
 
 	<main class="containerGrid">
 		<!-- Header -->
 		<section class="header">
-			<div class="time"></div>
 			<div class="brand">
 				<h1>POS Systems</h1>
 				<span>1st Class POS Solutions</span>
 			</div>
 			<div class="adminButtons">
-				<button id="menu-changes" class="btn" data-toggle='modal' data-target='#exampleModalLong2'
-					value="edit"><span>Edit
+				<button id="menu-changes" class="btn" data-toggle='modal' data-target='#exampleModalLong2' value="edit"><span>Edit
 						Menu</span></button>
 				<button id="order-list" class="btn" data-toggle='modal' data-target="#exampleModalLong3">View Orders</button>
 				<button type="button" id="logOut" class="btn">Log Out</button>
@@ -45,15 +43,15 @@
 			<section class="itemsGrid">
 				<h1>Items</h1>
 				<div id="items-div"></div>
-				<button id="create-items" class="btn" data-toggle='modal' data-target='#exampleModalLong1'
-					value="create"><span><i class="fas fa-plus"></i></span></button>
+				<button id="create-items" class="btn" data-toggle='modal' data-target='#exampleModalLong1' value="create"><span><i class="fas fa-plus"></i></span></button>
 			</section>
 		</section>
-		
+
 		<!-- Items List -->
 		<section class="orderGrid">
-			<form class=form-orderlist>
-				<h1 id="order-heading">Order</h1><br>
+			<form class="form-orderlist">
+				<h1 id="order-heading">Order</h1>
+				<div class="time"></div>
 				<div id="order-div"></div>
 				<div id="total"></div>
 				<div class="orderButtons">
@@ -63,8 +61,7 @@
 		</section>
 
 		<!-- Modals -->
-		<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+		<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -95,8 +92,7 @@
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal"
-								id="modal1">Close</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal" id="modal1">Close</button>
 							<button type="submit" class="btn btn-primary submit">Create</button>
 						</div>
 					</form>
@@ -104,8 +100,7 @@
 			</div>
 		</div>
 
-		<div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+		<div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -123,19 +118,18 @@
 			</div>
 		</div>
 
-		<div class="modal fade" id="exampleModalLong3" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+		<div class="modal fade" id="exampleModalLong3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLongTitle"></h5>
+						<h5 class="modal-title" id="exampleModalLongTitle">Orders List</h5>
 						<button id="modal3" type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body">
 						<div class="body3">
-							
+
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -148,9 +142,7 @@
 
 	<script src="https://kit.fontawesome.com/a5a0fef831.js" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script src="assets/js/adminView.js"></script>
 </body>
 

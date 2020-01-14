@@ -47,13 +47,16 @@ $(document).ready(function () {
 				len = data.employee.length;
 				for (var i = 0; i < len; i++) {
 					var dataEmployeeID = data.employee[i].employee_id;
-					var employeePosition = data.employee[i].employee_position;				
+					var employeePosition = data.employee[i].employee_position;
 					if (userInput == dataEmployeeID) {
-						if (employeePosition.indexOf("Orders")>-1) {
+						if (employeePosition.indexOf("Orders") > -1) {
 							window.location.assign(href = "/admin")
 						};
 					};
 				};
+			})
+			$("#button-clear").on("click", function (event) {
+				$(".employeeID").empty();
 			})
 		})
 	})
@@ -67,8 +70,8 @@ $(document).ready(function () {
 			timeDiv.text(dateData + "   " + timeData);
 		})
 	}
-	
-	
+
+
 	setInterval(updateTime, 1000);
 	updateTime();
 })

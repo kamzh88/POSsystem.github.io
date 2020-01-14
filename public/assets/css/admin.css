@@ -1,7 +1,12 @@
 body {
 	background: repeat url("../images/micro_carbon.png");
-	padding: 1rem;
+	padding: 1rem 10rem;
 }
+h1 {
+	font-size: 2rem !important;
+}
+
+/* Grid Layout */
 .header {
 	display: flex;
 	grid-area: header;
@@ -9,16 +14,9 @@ body {
 	align-items: center;
 	justify-content: space-between;
 	position: relative;
-	height: 155px;
 }
 .adminButtons {
 	align-self: flex-end;
-}
-.time {
-	position: absolute;
-	top: 1rem;
-	right: 2rem;
-	font-weight: bolder;
 }
 .buttons {
 	grid-area: buttons;
@@ -67,7 +65,6 @@ h1 {
 	border-radius: 1rem;
 	padding: 1rem;
 }
-.categorybtn,
 .itembtn,
 #create-items,
 #menu-changes,
@@ -101,8 +98,7 @@ h1 {
 	height: 106px;
 }
 .categorybtn:hover,
-.itembtn:hover,
-#create-items:hover {
+.itembtn:hover {
 	border: solid #337FED 1px;
 	background: #1E62D0;
 	background-image: -webkit-linear-gradient(top, #1E62D0, #3D94F6);
@@ -114,6 +110,57 @@ h1 {
 	-moz-border-radius: 20px;
 	border-radius: 20px;
 	text-decoration: none;
+}
+.categorybtn {
+	background: #F6A53D;
+	background-image: -webkit-linear-gradient(top, #F6A53D, #D0611E);
+	background-image: -moz-linear-gradient(top, #F6A53D, #D0611E);
+	background-image: -ms-linear-gradient(top, #F6A53D, #D0611E);
+	background-image: -o-linear-gradient(top, #F6A53D, #D0611E);
+	background-image: linear-gradient(to bottom, #F6A53D, #D0611E);
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	color: #FFFFFF;
+	font-family: Open Sans;
+	font-size: 1.5rem;
+	font-weight: 100;
+	padding: 1rem;
+	box-shadow: 1px 1px 20px 0px #000000;
+	-webkit-box-shadow: 1px 1px 20px 0px #000000;
+	-moz-box-shadow: 1px 1px 20px 0px #000000;
+	text-shadow: 1px 1px 20px #000000;
+	border: solid #FFAE00 1px;
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+	text-align: center;
+	margin: 1rem;
+	width: 150px;
+	height: 106px;
+}
+
+.categorybtn:hover {
+	border: solid #FFAE00 1px;
+	background: #D0611E;
+	background-image: -webkit-linear-gradient(top, #D0611E, #F6A53D);
+	background-image: -moz-linear-gradient(top, #D0611E, #F6A53D);
+	background-image: -ms-linear-gradient(top, #D0611E, #F6A53D);
+	background-image: -o-linear-gradient(top, #D0611E, #F6A53D);
+	background-image: linear-gradient(to bottom, #D0611E, #F6A53D);
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	text-decoration: none;
+}
+
+#create-items {
+	border: 2px dashed white;
+	opacity: 0.7;
+}
+
+#create-items:hover {
+	opacity: 1;
 }
 
 #menu-changes,
@@ -149,14 +196,22 @@ h1 {
 	width: 100%;
 }
 .orderButtons > .submit {
-	background-color: #3DF651;
+	border: 1px solid #2DAB09;
+	background-color: #2DAB09;
 	width: 100%;
 }
 
+.orderButtons > .submit:hover {
+	border: 1px solid #186801;
+	background-color: #186801;
+}
+
 /* Modal Body */
-.modal-body > .edit-heading:nth-of-type(odd) {
-	background-color: lightgray;
+.edit-heading {
 	padding: 0.5rem;
+}
+.modal-body > .edit-heading:nth-of-type(odd) {
+	background-color: #F7F7F7;
 }
 
 .edit-heading > .delete-item {
@@ -165,10 +220,25 @@ h1 {
 	border: none;
 }
 
+.edit-form {
+	padding: 1rem 0;
+}
+
+.form-group > input {
+	width: 100%;
+}
+
 /* Order Totals Section */
 .form-orderlist {
 	position: relative;
 	height: 100%;
+}
+.time {
+	font-size: 1rem;
+	position: absolute;
+	top: 0.5rem;
+	right: 0;
+	font-weight: bolder;
 }
 .form-orderlist > #total {
 	position: absolute;
@@ -203,4 +273,21 @@ h1 {
 .boldCSS {
 	font-weight: bold;
 	float: right;
+}
+
+.fa-trash-alt {
+	cursor: pointer;
+	color: red;
+}
+.fa-trash-alt:hover {
+	color: darkred;
+}
+.fa-edit,
+.fa-trash-alt {
+	padding: 0 0 0 1rem;
+	float: right;
+}
+
+.order > .panel-title > a:nth-of-type(odd) {
+	background-color: #F7F7F7;
 }
