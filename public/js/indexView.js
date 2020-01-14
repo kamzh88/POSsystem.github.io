@@ -90,7 +90,7 @@ $(document).ready(function () {
 		})
 
 		$(document).on("click", "#create-employee", function (event) {
-			// $('#exampleModalLong1').modal("show");
+			$('#exampleModalLong1').modal("show");
 			var userInput = inputArray.join('');
 			var len = data.employee.length;
 			for (var i = 0; i < len; i++) {
