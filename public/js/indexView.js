@@ -10,6 +10,10 @@ $(document).ready(function () {
 			// console.log(data);
 			var userInput = inputArray.join('');
 			var len = data.employee.length;
+			// if (userInput === "") {
+			// 	// console.log("Input a password please!")
+			// 	alert("Input a password please!")
+			// } else {
 			for (var i = 0; i < len; i++) {
 				var dataEmployeeID = data.employee[i].employee_id;
 				var employeePosition = data.employee[i].employee_position;
@@ -32,6 +36,7 @@ $(document).ready(function () {
 					}
 				}
 			}
+			// }
 		})
 
 		$(".create-form").on("submit", function (event) {
@@ -81,15 +86,17 @@ $(document).ready(function () {
 						}
 						if (employeePosition.indexOf("Cashier") > -1) {
 							window.location.assign("/cashier");
-						} else {
-							console.log("Wrong password")
 						}
-					
-					} else if (userInput = !dataEmployeeID) {
-						alert("Wrong password")
-						$(".employeeID").empty();
-
+						// } else {
+						// 	alert("Wrong password");
+						// 	$(".employeeID").empty();
+						// }
 					}
+					// } else if (userInput = !dataEmployeeID) {
+					// 	alert("Wrong password")
+					// 	$(".employeeID").empty();
+
+					// }
 
 				}
 			}
@@ -99,6 +106,10 @@ $(document).ready(function () {
 			// $('#exampleModalLong1').modal("show");
 			var userInput = inputArray.join('');
 			var len = data.employee.length;
+			// if (userInput === "") {
+			// 	// console.log("Input a password please!")
+			// 	alert("Input a password please!")
+			// } else {
 			for (var i = 0; i < len; i++) {
 				var dataEmployeeID = data.employee[i].employee_id;
 				var employeePosition = data.employee[i].employee_position;
@@ -108,10 +119,17 @@ $(document).ready(function () {
 				if (userInput == dataEmployeeID) {
 					if (employeePosition.indexOf("Manager") > -1) {
 						$('#exampleModalLong1').modal("show");
+					} else {
+						alert("Wrong password");
 					}
 				}
-			}
+				// } else if (userInput = !dataEmployeeID) {
+				// 	alert("Wrong password");
+				// 	$(".employeeID").empty();
 
+				// }
+			}
+			// }
 		})
 	})
 
