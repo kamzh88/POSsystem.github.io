@@ -8,6 +8,7 @@ $(document).ready(function () {
 
 		$(document).on("click", "#view-employee", function (event) {
 			// console.log(data);
+
 			var userInput = inputArray.join('');
 			var len = data.employee.length;
 			// if (userInput === "") {
@@ -30,6 +31,7 @@ $(document).ready(function () {
 							var employeeLastName = data.employee[i].employee_lastName;
 							// console.log(data.employee[i].employee_firstName);
 							var allEmployee = $(".all-employee");
+							// allEmployee.empty();
 							var new_elem = `${dataID}. ${employeeFirstName} ${employeeLastName} (${employeePosition}) <button class='delete-employee' data-id='${dataID}'>DELETE</button><br>`;
 							allEmployee.append(new_elem);
 						}

@@ -32,13 +32,10 @@ CREATE TABLE orders (
     PRIMARY KEY(id)
 );
 
-CREATE TABLE customers (
-    id INT NOT NULL AUTO_INCREMENT,
-    customer_number VARCHAR(255) NOT NULL,
-    customer_name VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
-);
+-- CREATE TABLE customers (
+--     id INT NOT NULL AUTO_INCREMENT,
+--     customer_number VARCHAR(255) NOT NULL,
+--     customer_name VARCHAR(255) NOT NULL,
+--     PRIMARY KEY (id)
+-- );
 
-CREATE TABLE itemize_id (
-    
-)
