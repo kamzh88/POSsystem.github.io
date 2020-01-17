@@ -67,9 +67,43 @@ h1 {
 	border-radius: 1rem;
 	padding: 1rem;
 }
-.categorybtn,
+.categorybtn {
+	background: #F6A53D;
+	background-image: -webkit-linear-gradient(top, #F6A53D, #D0611E);
+	background-image: -moz-linear-gradient(top, #F6A53D, #D0611E);
+	background-image: -ms-linear-gradient(top, #F6A53D, #D0611E);
+	background-image: -o-linear-gradient(top, #F6A53D, #D0611E);
+	background-image: linear-gradient(to bottom, #F6A53D, #D0611E);
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	color: #FFFFFF;
+	font-family: Open Sans;
+	font-size: 1.5rem;
+	font-weight: 100;
+	padding: 1rem;
+	box-shadow: 1px 1px 20px 0px #000000;
+	-webkit-box-shadow: 1px 1px 20px 0px #000000;
+	-moz-box-shadow: 1px 1px 20px 0px #000000;
+	text-shadow: 1px 1px 20px #000000;
+	border: solid #FFAE00 1px;
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+	text-align: center;
+	margin: 1rem;
+	width: 150px;
+	height: 106px;
+}
 .itembtn,
-#create-items,
+#create-items {
+	border: 2px dashed white;
+	opacity: 0.7;
+}
+
+#create-items:hover {
+	opacity: 1;
+}
 #menu-changes,
 #order-list,
 #logOut {
